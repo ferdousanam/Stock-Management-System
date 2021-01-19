@@ -20,5 +20,13 @@
         "resolve-url-loader": "^3.1.0",
         "sass": "^1.15.2",
         "sass-loader": "^8.0.0"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.15.2",
+        "admin-lte": "^3.0.5",
+        "jquery-knob-chif": "^1.2.13",
+        "jquery-ui": "^1.12.1",
+        "jqvmap-novulnerability": "^1.5.1",
+        "moment": "^2.29.1"
     }
 }
