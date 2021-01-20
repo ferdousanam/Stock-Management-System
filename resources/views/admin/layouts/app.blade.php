@@ -16,6 +16,8 @@
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
+    @livewireStyles
+
     <!-- Styles -->
     <link href="{{ asset('assets/admin/css/app.css') }}" rel="stylesheet">
 </head>
@@ -47,6 +49,8 @@
     @include('admin.layouts.inc.footer')
 </div>
 <!-- ./wrapper -->
+
+@livewireScripts
 
 <!-- Scripts -->
 <script src="{{ asset('assets/admin/js/app.js') }}"></script>
