@@ -56,7 +56,7 @@
                                 <div class="row">
                                     <div class="col-sm-6">
 
-                                        @include('admin.products.form')
+                                        @include('<?php print $pageResource ?>.form')
 
                                         <div class="form-group text-center">
                                             <button type="submit" class="btn btn-success btn-flat btn-lg">Update
