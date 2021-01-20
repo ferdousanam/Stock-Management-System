@@ -51,11 +51,21 @@
     text-align: left;
 }
 
+.btn {
+    border-radius: 0;
+    border-width: 1px;
+    box-shadow: none;
+}
+
+.select2-container--default .select2-selection--single {
+     border-radius: 0;
+}
+
 div.has-error {
     .form-control {
         border-color: #dd4b39 !important;
     }
-    span {
+    span > strong {
         color: #dd4b39 !important;
     }
 }
@@ -64,7 +74,7 @@ div.has-success {
     .form-control {
         border-color: #28a745 !important;
     }
-    span {
+    span > strong {
         color: #28a745 !important;
     }
 }
