@@ -24,6 +24,7 @@
 
 .dropdown-item a {
     color: #000;
+    display: block;
 }
 
 .filter-input-box {
@@ -32,4 +33,8 @@
 
 .table td {
     padding: 0.3rem;
+}
+
+.dt-buttons {
+    float: left;
 }

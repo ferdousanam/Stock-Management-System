@@ -6,6 +6,10 @@ window._ = require('lodash');
  * code may be modified to fit the specific needs of your application.
  */
 
+// Datatables Dependency
+import jsZip from 'jszip/dist/jszip';
+window.JSZip = jsZip;
+
 try {
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
@@ -20,10 +24,12 @@ try {
     require('daterangepicker');
     require('summernote');
     require('overlayScrollbars');
+
     require('datatables.net');
     require('datatables.net-bs4');
     require('datatables.net-responsive-bs4');
     require('datatables.net-buttons');
+    require('datatables.net-buttons/js/buttons.colVis');
     require('datatables.net-buttons/js/buttons.flash');
     require('datatables.net-buttons/js/buttons.html5');
     require('datatables.net-buttons/js/buttons.print');

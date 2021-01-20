@@ -49,10 +49,16 @@
 <!-- ./wrapper -->
 
 <!-- Scripts -->
-<script src="{{ asset('assets/admin/js/app.js') }}" defer></script>
+<script src="{{ asset('assets/admin/js/app.js') }}"></script>
 
 {{--@include('admin.layouts.inc.scripts')--}}
-
+@if (isset($activeNavSelector))
+    <script>
+        $(document).ready(function () {
+            $("{{$activeNavSelector}}").addClass('active');
+        });
+    </script>
+@endif
 @stack('scripts')
 </body>
 </html>
