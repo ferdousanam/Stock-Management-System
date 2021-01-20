@@ -220,8 +220,8 @@ if (!function_exists('listAction')) {
     {
         if (!empty($array)) {
             echo '<div class="dropdown">
-                <a class="btn btn-success btn-flat btn-xs dropdown-toggle" type="button" data-toggle="dropdown">Action <span class="caret"></span></a>
-                <ul class="dropdown-menu dropdown-menu-right">';
+                <a class="btn btn-success btn-flat btn-sm dropdown-toggle" type="button" data-toggle="dropdown">Action <span class="caret"></span></a>
+                <ul class="dropdown-menu border-0 shadow">';
 
             echo implode('', $array);
 
@@ -236,26 +236,26 @@ if (!function_exists('listAction')) {
     {
         if ($access) {
             if ($type == 'show') {
-                return '<li><a href="' . $url . '"><i class="fa fa-eye"></i> Show</a></li>';
+                return '<li class="dropdown-item"><a href="' . $url . '"><i class="fas fa-eye"></i> Show</a></li>';
             } elseif ($type == 'edit') {
-                return '<li><a href="' . $url . '"><i class="fa fa-pencil"></i> Edit</a></li>';
+                return '<li class="dropdown-item"><a href="' . $url . '"><i class="fas fa-edit"></i> Edit</a></li>';
             } elseif ($type == 'delete') {
-                return '<li><a onclick="deleted(\'' . $url . '\')"><i class="fa fa-close"></i> Delete</a></li>';
+                return '<li class="dropdown-item"><a onclick="deleted(\'' . $url . '\')"><i class="fas fa-trash-alt"></i> Delete</a></li>';
             } elseif ($type == 'media') {
-                return '<li><a href="' . $url . '"><i class="fa fa-pencil"></i> Media Upload</a></li>';
+                return '<li class="dropdown-item"><a href="' . $url . '"><i class="fa fa-pencil"></i> Media Upload</a></li>';
             } elseif ($type == 'activity') {
                 $actReturn = '';
                 if ($array['status'] == 2 || $array['status'] == 0) {
-                    $actReturn .= '<li><a onclick="activity(\'' . $url . '/1\')"><i class="fa fa-check-square-o"></i> Active</a></li>';
+                    $actReturn .= '<li class="dropdown-item"><a onclick="activity(\'' . $url . '/1\')"><i class="fa fa-check-square-o"></i> Active</a></li>';
                 }
 
                 if ($array['status'] == 1 || $array['status'] == 0) {
-                    $actReturn .= '<li><a onclick="activity(\'' . $url . '/2\')"><i class="fa fa-ban"></i> Inactive</a></li>';
+                    $actReturn .= '<li class="dropdown-item"><a onclick="activity(\'' . $url . '/2\')"><i class="fa fa-ban"></i> Inactive</a></li>';
                 }
                 return $actReturn;
             } elseif ($type == 'custom') {
                 $link = (isset($array['onclick'])) ? 'onclick=' . $array['onclick'] . '(\'' . $url . '\')"' : 'href="' . $url . '"';
-                return '<li><a href="' . $url . '">' . $array['icon'] . '</a></li>';
+                return '<li class="dropdown-item"><a href="' . $url . '">' . $array['icon'] . '</a></li>';
             }
         }
     }
