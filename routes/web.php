@@ -21,4 +21,5 @@ Route::group(['middleware' => ['auth'], 'as' => 'admin.'], function () {
     Route::get('/home', [\App\Http\Controllers\Admin\HomeController::class, 'index'])->name('home');
     Route::resource('/products', \App\Http\Controllers\Admin\ProductController::class);
     Route::resource('/categories', \App\Http\Controllers\Admin\CategoryController::class);
+    Route::resource('/brands', \App\Http\Controllers\Admin\BrandController::class);
 });

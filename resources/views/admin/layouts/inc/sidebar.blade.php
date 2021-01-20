@@ -25,7 +25,7 @@
                 <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                 <li class="nav-item" id="dashboard-mm">
                     <a href="{{ url('/home') }}" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
@@ -35,9 +35,15 @@
                         <p>Products</p>
                     </a>
                 </li>
+                <li class="nav-item" id="brands-mm">
+                    <a href="{{ url('/brands') }}" class="nav-link">
+                        <i class="nav-icon fas fa-th-list"></i>
+                        <p>Brands</p>
+                    </a>
+                </li>
                 <li class="nav-item" id="categories-mm">
                     <a href="{{ url('/categories') }}" class="nav-link">
-                        <i class="nav-icon fas fa-clipboard-list"></i>
+                        <i class="nav-icon fas fa-th-list"></i>
                         <p>Categories</p>
                     </a>
                 </li>
