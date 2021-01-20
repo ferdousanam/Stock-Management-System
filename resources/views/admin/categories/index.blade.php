@@ -95,10 +95,10 @@
                                                     @php
                                                         $access = 1;
                                                         listAction([
-                                                            actionLi(route($pageResource.'.show', $record->id).qString(), 'show', $access),
+                                                            actionLi(route($pageResource.'.show', $record->id), 'show', $access),
                                                             actionLi(route($pageResource.'.edit', $record->id), 'livewire', $access,
-                                                             ['icon' => '<i class="fas fa-edit"></i> Edit', 'action' => 'editCategory('.$record->id.')']),
-                                                            actionLi(route($pageResource.'.destroy', $record->id).qString(), 'delete', $access),
+                                                             ['icon' => '<i class="fas fa-edit"></i> Edit', 'emit' => ['event' => 'editCategory', 'params' => $record->id]]),
+                                                            actionLi(route($pageResource.'.destroy', $record->id), 'delete', $access),
                                                         ]);
                                                     @endphp
                                                 </td>
@@ -123,7 +123,7 @@
 @push('scripts')
     <script>
         function editCategory(id) {
-            Livewire.emit('editCategory', id);
+            ;
         }
 
         window.addEventListener('showAddModal', evt => {

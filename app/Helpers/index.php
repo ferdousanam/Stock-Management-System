@@ -257,7 +257,15 @@ if (!function_exists('listAction')) {
                 $link = (isset($array['onclick'])) ? 'onclick=' . $array['onclick'] . '(\'' . $url . '\')"' : 'href="' . $url . '"';
                 return '<li class="dropdown-item"><a href="' . $url . '">' . $array['icon'] . '</a></li>';
             } elseif ($type == 'livewire') {
-                return '<li class="dropdown-item"><button class="livewire-btn" type="button" onclick="' . $array['action'] . '">' . $array['icon'] . '</button></li>';
+                $onClick = '';
+                if (isset($array['emit'])) {
+                    $onClick .= 'onclick="Livewire.emit(\'' . $array['emit']['event'] . '\'';
+                    if (isset($array['emit']['params'])) {
+                        $onClick .= ', ' .$array['emit']['params'];
+                    }
+                    $onClick .= ')"';
+                }
+                return '<li class="dropdown-item"><button class="livewire-btn" type="button" ' . $onClick . '>' . $array['icon'] . '</button></li>';
             }
         }
     }
