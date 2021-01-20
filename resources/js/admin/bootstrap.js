@@ -20,6 +20,14 @@ try {
     require('daterangepicker');
     require('summernote');
     require('overlayScrollbars');
+    require('datatables.net');
+    require('datatables.net-bs4');
+    require('datatables.net-responsive-bs4');
+    require('datatables.net-buttons');
+    require('datatables.net-buttons/js/buttons.flash');
+    require('datatables.net-buttons/js/buttons.html5');
+    require('datatables.net-buttons/js/buttons.print');
+    require('datatables.net-buttons-bs4');
     // require('tempusdominus-bootstrap-4');
     require('admin-lte');
 } catch (e) {}
@@ -50,3 +58,45 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+$('.applyDataTable').DataTable({
+    paging: false,
+    dom: 'tB',
+    buttons: [
+        {
+            extend: 'copy',
+            footer: true,
+            exportOptions: {
+                //columns: [':visible :not(:last-child)']
+                columns: ':visible:not(.not-export-col)'
+            }
+        },
+        {
+            extend: 'excel',
+            footer: true,
+            exportOptions: {
+                //columns: [':visible :not(:last-child)']
+                columns: ':visible:not(.not-export-col)'
+            }
+        },
+        {
+            extend: 'pdf',
+            footer: true,
+            exportOptions: {
+                //columns: [':visible :not(:last-child)']
+                columns: ':visible:not(.not-export-col)'
+            }
+        },
+        {
+            extend: 'print',
+            footer: true,
+            exportOptions: {
+                //columns: [':visible :not(:last-child)']
+                columns: ':visible:not(.not-export-col)'
+            }
+        }
+    ]
+    /*buttons: [
+        'copy', 'excel', 'pdf', 'print'
+    ]*/
+});
