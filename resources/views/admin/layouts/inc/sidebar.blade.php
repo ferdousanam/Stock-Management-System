@@ -35,6 +35,12 @@
                         <p>Products</p>
                     </a>
                 </li>
+                <li class="nav-item" id="stock-management-mm">
+                    <a href="{{ url('/stock-management') }}" class="nav-link">
+                        <i class="nav-icon fas fa-cubes"></i>
+                        <p>Stock Management</p>
+                    </a>
+                </li>
                 <li class="nav-item" id="brands-mm">
                     <a href="{{ url('/brands') }}" class="nav-link">
                         <i class="nav-icon fas fa-th-list"></i>
