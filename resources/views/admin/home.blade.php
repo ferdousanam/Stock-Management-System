@@ -1,7 +1,8 @@
 @extends('admin.layouts.app')
 
 @php
-    $pageTitle = "Dashboard"
+    $pageTitle = "Dashboard";
+    $activeNavSelector = '#dashboard-mm .nav-link';
 @endphp
 
 @section('content')
