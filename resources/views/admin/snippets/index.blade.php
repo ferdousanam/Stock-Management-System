@@ -3,6 +3,7 @@
 @php
     $pageTitle = '<?php print $pageTitle ?>';
     $pageResource = '<?php print $pageResource ?>';
+    $activeNavSelector = '#-mm .nav-link';
 @endphp
 
 @section('content')
@@ -44,19 +45,19 @@
                     <div class="col-sm-12">
                         <form method="GET" action="{{ route($pageResource.'.index') }}">
                             <div class="d-flex justify-content-end">
-                                <div class="">
+                                <div class="filter-input-box">
                                     <select class="form-control select2" name="service_id">
                                         <option value="">Service</option>
                                         @if (!empty($services))
                                             @foreach ($services as $service)
-                                                <option value="{{$service->id}}">{{$service->service_name}}</option>
+                                                <option value="{{$service->id}}" {{(request('service_id')==$service->id)?'selected':''}}>{{$service->service_name}}</option>
                                             @endforeach
                                         @endif
                                     </select>
                                 </div>
 
-                                <div class="">
-                                    <input type="text" class="form-control" name="q" value="{{ Request::get('q') }}" placeholder="Search">
+                                <div class="filter-input-box">
+                                    <input type="text" class="form-control" name="q" value="{{ request('q') }}" placeholder="Search">
                                 </div>
 
                                 <div class="">
@@ -75,7 +76,7 @@
                                         <tr>
                                             <th>SL.</th>
                                             <th>Created at</th>
-                                            <th class="not-export-col">Action</th>
+                                            <th class="text-center not-export-col">Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -83,7 +84,7 @@
                                             <tr>
                                                 <td>{{$serial++}}</td>
                                                 <td>{{formatDateTime($record->created_at)}}</td>
-                                                <td>
+                                                <td class="text-center">
                                                     @php
                                                         $access = 1;
                                                         listAction([
