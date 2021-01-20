@@ -28,13 +28,13 @@
     </div>
 </div>
 
-<div class="form-group{{ $errors->has('note') ? ' has-error' : '' }}">
-    <label for="note" class="control-label col-sm-3">Address:</label>
+<div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
+    <label for="address" class="control-label col-sm-3">Address:</label>
     <div class="col-sm-9">
-        <textarea class="form-control" name="note" id="note" rows="5">{{ old('note', $data->address) }}</textarea>
+        <textarea class="form-control" name="address" id="address" rows="5">{{ old('address', $data->address) }}</textarea>
 
-        @if ($errors->has('note'))
-            <span class="help-block"><strong>{{ $errors->first('note') }}</strong></span>
+        @if ($errors->has('address'))
+            <span class="help-block"><strong>{{ $errors->first('address') }}</strong></span>
         @endif
     </div>
 </div>
