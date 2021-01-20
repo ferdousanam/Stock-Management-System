@@ -94,7 +94,7 @@ if (!function_exists('deleteFile')) {
 if (!function_exists('qString')) {
     function qString($query = null)
     {
-        if ($_SERVER['QUERY_STRING']) {
+        if (isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING']) {
             return '?' . $_SERVER['QUERY_STRING'] . $query;
         } else {
             if ($query) {
@@ -256,6 +256,8 @@ if (!function_exists('listAction')) {
             } elseif ($type == 'custom') {
                 $link = (isset($array['onclick'])) ? 'onclick=' . $array['onclick'] . '(\'' . $url . '\')"' : 'href="' . $url . '"';
                 return '<li class="dropdown-item"><a href="' . $url . '">' . $array['icon'] . '</a></li>';
+            } elseif ($type == 'livewire') {
+                return '<li class="dropdown-item"><button class="livewire-btn" type="button" onclick="' . $array['action'] . '">' . $array['icon'] . '</button></li>';
             }
         }
     }

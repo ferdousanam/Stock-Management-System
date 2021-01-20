@@ -20,4 +20,5 @@ Route::get('/', function () {
 Route::group(['middleware' => ['auth'], 'as' => 'admin.'], function () {
     Route::get('/home', [\App\Http\Controllers\Admin\HomeController::class, 'index'])->name('home');
     Route::resource('/products', \App\Http\Controllers\Admin\ProductController::class);
+    Route::resource('/categories', \App\Http\Controllers\Admin\CategoryController::class);
 });

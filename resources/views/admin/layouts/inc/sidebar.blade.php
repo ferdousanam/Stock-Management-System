@@ -35,6 +35,12 @@
                         <p>Products</p>
                     </a>
                 </li>
+                <li class="nav-item" id="categories-mm">
+                    <a href="{{ url('/categories') }}" class="nav-link">
+                        <i class="nav-icon fas fa-clipboard-list"></i>
+                        <p>Categories</p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
