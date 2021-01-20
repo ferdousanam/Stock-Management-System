@@ -22,7 +22,7 @@
                         <i class="fas fa-sign-out-alt mr-"></i> {{ __('Logout') }}
                     </a>
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none non-validate">
                         @csrf
                     </form>
                 </a>

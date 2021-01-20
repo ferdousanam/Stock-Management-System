@@ -35,6 +35,8 @@ try {
     require('datatables.net-buttons/js/buttons.print');
     require('datatables.net-buttons-bs4');
     // require('tempusdominus-bootstrap-4');
+    require('jquery-validation');
+    require('select2');
     require('admin-lte');
 } catch (e) {}
 

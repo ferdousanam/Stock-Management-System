@@ -9,6 +9,8 @@
 @import '~summernote/dist/summernote-bs4.min.css';
 @import '~datatables.net-bs4/css/dataTables.bootstrap4.css';
 @import '~datatables.net-responsive-bs4/css/responsive.bootstrap4.css';
+@import '~select2/dist/css/select2.css';
+@import 'styles';
 
 .hidden, .hide {
     display: none;
@@ -47,4 +49,22 @@
     background: transparent;
     width: 100%;
     text-align: left;
+}
+
+div.has-error {
+    .form-control {
+        border-color: #dd4b39 !important;
+    }
+    span {
+        color: #dd4b39 !important;
+    }
+}
+
+div.has-success {
+    .form-control {
+        border-color: #28a745 !important;
+    }
+    span {
+        color: #28a745 !important;
+    }
 }

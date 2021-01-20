@@ -1,0 +1,86 @@
+a{cursor:pointer;}
+.main-footer { padding: 3px 15px; }
+.border-bottom{border-bottom:1px solid #ccc;}
+.border-top{border-top:1px solid #ccc;}
+.select2{width: 100% !important;}
+.input-group-select2{display:table;}
+.input-group-select2 .input-group-addon{border-radius:0;border-color:#d2d6de;background-color:#fff}
+.input-group-img{width:20px;height:20px;}
+div.has-error .select2-selection--single,
+div.has-error .select2-selection--multiple{
+    border: 1px solid #dd4b39 !important;
+}
+.remove{width:105px;}
+.readonly {background-color: #eee;}
+.required:after {content:"*";color:#dd4b39;}
+.no-padding-left{padding-left: 0;}
+.no-padding-right{padding-right: 0;}
+.project-name-header{line-height: 50px; margin-left:20px; font-size:18px; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
+.pagination { margin: 0; }
+
+@media (max-width:767px){ .min-padding-xs{padding-left: 8px;padding-right: 8px;} }
+@media (min-width:768px){ .min-padding-sm{padding-left: 6px;padding-right: 6px;} }
+@media (min-width:992px){ .min-padding-md{padding-left: 10px;padding-right: 10px;} }
+@media (min-width:992px){ .row-eq-height-md{display: flex;} }
+
+
+/* DataTable Fixed Header */
+div.FixedHeader_Cloned th,
+div.FixedHeader_Cloned td {
+    background-color: white !important;
+}
+
+/* DataTable export button */
+/* div.dt-buttons {
+    position: relative;
+    float: left;
+} */
+.dt-buttons {
+    background: #3c8dbc;
+    margin: 0;
+    padding: 0;
+    height: 37px;
+    border-radius: 3px;
+    padding: 4px;
+    margin-bottom: 10px;
+}
+/* a.dt-button:not(:first-child) {
+    border-left: 1px solid #fff;
+} */
+button.dt-button,
+div.dt-button,
+a.dt-button {
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 0.5em 1em;
+    border: 0;
+    border-radius: 0px;
+    cursor: pointer;
+    font-size: 0.88em;
+    color: #fff;
+    overflow: hidden;
+    background-color: #3c8dbc;
+    background-image: none;
+    text-decoration: none;
+    outline: none;
+    margin: 0;
+}
+button.dt-button:hover:not(.disabled),
+div.dt-button:hover:not(.disabled),
+a.dt-button:hover:not(.disabled) {
+    border: 0;
+    background-color: #3c8dbc;
+    background-image: none;
+    text-decoration: none;
+    outline: none;
+    margin: 0;
+}
+
+/* User login/regi page */
+@media (min-width:768px){ .min-padding-sm{margin: auto; width: 80%; padding: 10px;} }
+@media (min-width:992px){ .userpanel{margin: auto; width: 45%; padding: 10px; min-height:550px;} }
+
+.select2-selection.select2-selection--single {
+    min-width: 280px;
+}

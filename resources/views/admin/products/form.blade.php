@@ -13,7 +13,7 @@
     <label for="product_brand_id" class="control-label col-sm-3 required">Brand:</label>
     <div class="col-sm-9">
         @php($product_brand_id = old('product_brand_id', $data->product_brand_id))
-        <select class="form-control" name="product_brand_id" id="product_brand_id" required>
+        <select class="form-control select2" name="product_brand_id" id="product_brand_id" required>
             <option value="">Select Brand</option>
             @if (!empty($brands))
                 @foreach ($brands as $brand)
@@ -29,11 +29,11 @@
 </div>
 
 <div class="form-group{{ $errors->has('product_category_id') ? ' has-error' : '' }}">
-    <label for="product_category_id" class="control-label col-sm-3 required">Brand:</label>
+    <label for="product_category_id" class="control-label col-sm-3 required">Category:</label>
     <div class="col-sm-9">
         @php($product_category_id = old('product_category_id', $data->product_category_id))
-        <select class="form-control" name="product_category_id" id="product_category_id" required>
-            <option value="">Select Brand</option>
+        <select class="form-control select2" name="product_category_id" id="product_category_id" required>
+            <option value="">Select Category</option>
             @if (!empty($categories))
                 @foreach ($categories as $category)
                     <option value="{{$category->id}}" {{ ($product_category_id==$category->id)?'selected':'' }}>{{ $category->title }}</option>
