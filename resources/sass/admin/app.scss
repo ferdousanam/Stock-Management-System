@@ -7,3 +7,21 @@
 @import '~overlayscrollbars/css/OverlayScrollbars.min.css';
 @import '~daterangepicker/daterangepicker.css';
 @import '~summernote/dist/summernote-bs4.min.css';
+@import '~datatables.net-bs4/css/dataTables.bootstrap4.css';
+@import '~datatables.net-responsive-bs4/css/responsive.bootstrap4.css';
+
+.hidden, .hide {
+    display: none;
+}
+
+.form-control {
+    border-radius: 0;
+}
+
+.dropdown-menu li {
+    cursor: pointer;
+}
+
+.dropdown-item a {
+    color: #000;
+}
