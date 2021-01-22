@@ -39,7 +39,7 @@
 
                 <li class="nav-item">
                     <a href="#" class="nav-link active">
-                        <i class="fa fa-plus" aria-hidden="true"></i> {{ $pageTitle }} Details
+                        <i class="fa fa-th-list" aria-hidden="true"></i> {{ $pageTitle }} Details
                     </a>
                 </li>
             </ul>
