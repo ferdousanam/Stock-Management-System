@@ -24,6 +24,13 @@
     <link href="{{ asset('assets/admin/css/app.css') }}" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
+<div class="preloader">
+    <div class="lds-ripple">
+        <div class="lds-pos"></div>
+        <div class="lds-pos"></div>
+    </div>
+</div>
+
 <div id="app" class="wrapper">
 
 @include('admin.layouts.inc.header')
@@ -69,5 +76,15 @@
     });
 </script>
 @stack('scripts')
+<script>
+    $(document).ready(function () {
+        $('.nav-item').click(function () {
+            // $('.preloader').show();
+        });
+    });
+    $(window).on('load', function () {
+        $('.preloader').fadeOut('slow');
+    });
+</script>
 </body>
 </html>
