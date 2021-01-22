@@ -3,7 +3,8 @@
 @php
     $pageTitle = 'Categories';
     $pageResource = 'admin.categories';
-    $activeNavSelector = '#categories-mm .nav-link';
+    $activeNavSelector = '#categories-sm .nav-link';
+    $activeNavParentSelector = '#settings-mm.nav-item';
 @endphp
 
 @section('content')

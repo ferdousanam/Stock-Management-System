@@ -3,7 +3,8 @@
 @php
     $pageTitle = 'Brands';
     $pageResource = 'admin.brands';
-    $activeNavSelector = '#brands-mm .nav-link';
+    $activeNavSelector = '#brands-sm .nav-link';
+    $activeNavParentSelector = '#settings-mm.nav-item';
 @endphp
 
 @section('content')

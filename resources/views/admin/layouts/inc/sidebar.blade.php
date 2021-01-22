@@ -41,17 +41,58 @@
                         <p>Stock Management</p>
                     </a>
                 </li>
-                <li class="nav-item" id="brands-mm">
-                    <a href="{{ url('/brands') }}" class="nav-link">
-                        <i class="nav-icon fas fa-th-list"></i>
-                        <p>Brands</p>
+                <li class="nav-item" id="purchases-mm">
+                    <a href="{{ url('/purchases') }}" class="nav-link">
+                        <i class="nav-icon fas fa-star"></i>
+                        <p>Purchases</p>
                     </a>
                 </li>
-                <li class="nav-item" id="categories-mm">
-                    <a href="{{ url('/categories') }}" class="nav-link">
-                        <i class="nav-icon fas fa-th-list"></i>
-                        <p>Categories</p>
+                <li class="nav-item" id="transfers-mm">
+                    <a href="{{ url('/transfers') }}" class="nav-link">
+                        <i class="nav-icon far fa-star"></i>
+                        <p>Transfers</p>
                     </a>
+                </li>
+                <li class="nav-item" id="returns-mm">
+                    <a href="{{ url('/returns') }}" class="nav-link">
+                        <i class="nav-icon fas fa-random"></i>
+                        <p>Returns</p>
+                    </a>
+                </li>
+                <li class="nav-item" id="users-mm">
+                    <a href="{{ url('/users') }}" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>People</p>
+                    </a>
+                </li>
+                <li class="nav-item has-treeview" id="settings-mm">
+                    <a href="#" class="nav-link tree-opener">
+                        <i class="nav-icon fas fa-edit"></i>
+                        <p>
+                            Settings
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item" id="system_settings-sm">
+                            <a href="{{ url('/system_settings') }}" class="nav-link">
+                                <i class="nav-icon fas fa-cogs"></i>
+                                <p>System Settings</p>
+                            </a>
+                        </li>
+                        <li class="nav-item" id="brands-sm">
+                            <a href="{{ url('/brands') }}" class="nav-link">
+                                <i class="nav-icon fas fa-th-list"></i>
+                                <p>Brands</p>
+                            </a>
+                        </li>
+                        <li class="nav-item" id="categories-sm">
+                            <a href="{{ url('/categories') }}" class="nav-link">
+                                <i class="nav-icon fas fa-th-list"></i>
+                                <p>Categories</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </nav>

@@ -56,13 +56,16 @@
 <script src="{{ asset('assets/admin/js/app.js') }}"></script>
 
 {{--@include('admin.layouts.inc.scripts')--}}
-@if (isset($activeNavSelector))
-    <script>
-        $(document).ready(function () {
+<script>
+    $(document).ready(function () {
+        @if (isset($activeNavSelector))
             $("{{$activeNavSelector}}").addClass('active');
-        });
-    </script>
-@endif
+        @endif
+        @if (isset($activeNavParentSelector))
+            $("{{$activeNavParentSelector}}").addClass('menu-open').find('.tree-opener').addClass('active');
+        @endif
+    });
+</script>
 @stack('scripts')
 </body>
 </html>
