@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }} || {{isset($pageTitle) ? $pageTitle :''}}</title>
+    <title>{{isset($pageTitle) ? $pageTitle :''}} || {{ config('app.name', 'Laravel') }}</title>
 
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}"/>
 
@@ -22,6 +22,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('assets/admin/css/app.css') }}" rel="stylesheet">
+    @stack('styles')
     <script> var base_url = '{{ url("/") }}'; </script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">

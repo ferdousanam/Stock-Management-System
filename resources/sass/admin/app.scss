@@ -1,11 +1,11 @@
 @import '~@fortawesome/fontawesome-free/css/all.css';
+@import '~jquery-ui-dist/jquery-ui.css';
 @import '~bootstrap/scss/bootstrap';
-@import '~tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css';
 @import '~icheck-bootstrap/icheck-bootstrap.css';
 @import '~jqvmap-novulnerability/dist/jqvmap.css';
 @import '~admin-lte/dist/css/adminlte';
 @import '~overlayscrollbars/css/OverlayScrollbars.min.css';
-@import '~daterangepicker/daterangepicker.css';
+@import '~jquery-datetimepicker/jquery.datetimepicker.css';
 @import '~summernote/dist/summernote-bs4.min.css';
 @import '~datatables.net-bs4/css/dataTables.bootstrap4.css';
 @import '~datatables.net-responsive-bs4/css/responsive.bootstrap4.css';
@@ -59,13 +59,14 @@
 }
 
 .select2-container--default .select2-selection--single {
-     border-radius: 0;
+    border-radius: 0;
 }
 
 div.has-error {
     .form-control {
         border-color: #dd4b39 !important;
     }
+
     span > strong {
         color: #dd4b39 !important;
     }
@@ -75,7 +76,16 @@ div.has-success {
     .form-control {
         border-color: #28a745 !important;
     }
+
     span > strong {
         color: #28a745 !important;
     }
+}
+
+.table td {
+    position: relative;
+}
+
+.table th, .table td {
+    padding: 0.4rem;
 }

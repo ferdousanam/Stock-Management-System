@@ -16,5 +16,6 @@ mix.js('resources/js/app.js', 'public/js')
     .sourceMaps();
 
 mix.js('resources/js/admin/app.js', 'public/assets/admin/js')
+    .vue()
     .sass('resources/sass/admin/app.scss', 'public/assets/admin/css')
     .sourceMaps();

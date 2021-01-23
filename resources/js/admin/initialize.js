@@ -1,3 +1,17 @@
+window.datepickerConfig = datepickerConfig = {
+    yearStart: (new Date()).getFullYear() - 2,
+    yearEnd: (new Date()).getFullYear(),
+    timepicker: false,
+    format: 'd-m-Y',
+}
+
+window.datetimepickerConfig = datetimepickerConfig = {
+    yearStart: (new Date()).getFullYear() - 2,
+    yearEnd: (new Date()).getFullYear(),
+    format: 'd-m-Y H:i',
+    step: 30,
+}
+
 $(document).ready(function () {
     $(".readonly").keydown(function(e){
         e.preventDefault();
@@ -37,4 +51,9 @@ $(document).ready(function () {
 
     //Initialize Select2 Elements
     $('.select2').select2();
+
+
+    //Initialize JQuery Datetimepicker
+    $('.datepicker').datetimepicker(datepickerConfig);
+    $('.datetimepicker').datetimepicker(datetimepickerConfig);
 });

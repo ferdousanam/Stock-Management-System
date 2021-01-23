@@ -8,20 +8,21 @@ window._ = require('lodash');
 
 // Datatables Dependency
 import jsZip from 'jszip/dist/jszip';
+
 window.JSZip = jsZip;
 
 try {
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
 
-    require('jquery-ui');
+    require('jquery-ui-dist/jquery-ui');
     require('bootstrap');
     require('chart.js');
     require('sparklines');
     require('jqvmap-novulnerability');
     require('jquery-knob-chif');
     require('moment');
-    require('daterangepicker');
+    require('jquery-datetimepicker');
     require('summernote');
     require('overlayScrollbars');
 
@@ -38,7 +39,8 @@ try {
     require('jquery-validation');
     require('select2');
     require('admin-lte');
-} catch (e) {}
+} catch (e) {
+}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
