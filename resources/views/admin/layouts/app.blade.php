@@ -22,6 +22,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('assets/admin/css/app.css') }}" rel="stylesheet">
+    <script> var base_url = '{{ url("/") }}'; </script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="preloader">
