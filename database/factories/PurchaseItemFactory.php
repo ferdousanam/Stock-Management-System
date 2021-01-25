@@ -34,6 +34,7 @@ class PurchaseItemFactory extends Factory
             'net_cost' => $net_cost,
             'net_discount' => $net_discount,
             'quantity' => $quantity,
+            'expiry_date' => $this->faker->dateTimeBetween($startDate = '+2 years', $endDate = '+5 years'),
             'status' => $this->faker->randomElement(['pending', 'received']),
         ];
     }

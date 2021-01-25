@@ -71,7 +71,7 @@
                         </td>
                         <td>
                             <input name="product_id[]" type="hidden" :value="item.product_id">
-                            <input class="form-control datepicker" name="expiry[]" type="text">
+                            <input class="form-control datepicker" name="expiry_date[]" type="text" :value="formatDate(item.expiry_date)">
                         </td>
                         <td class="text-right">
                             <span class="text-right">@{{ item.price }}</span>

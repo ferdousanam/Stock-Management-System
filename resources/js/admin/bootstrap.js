@@ -21,7 +21,7 @@ try {
     require('sparklines');
     require('jqvmap-novulnerability');
     require('jquery-knob-chif');
-    require('moment');
+    window.moment = require('moment');
     require('jquery-datetimepicker');
     require('summernote');
     require('overlayScrollbars');

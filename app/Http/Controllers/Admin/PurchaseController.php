@@ -68,6 +68,7 @@ class PurchaseController extends Controller
             $requestItems[$product_id] = [
                 'product_id' => $product_id,
                 'quantity' => $request->quantity[$key],
+                'expiry_date' => $request->expiry_date[$key],
                 'status' => $request->payment_status,
             ];
         }
@@ -82,6 +83,7 @@ class PurchaseController extends Controller
                 'unit_cost' => $item->price,
                 'net_cost' => $net_cost,
                 'quantity' => $requestItems[$item->id]['quantity'],
+                'expiry_date' => $requestItems[$item->id]['expiry_date'],
                 'status' => $requestItems[$item->id]['status'],
             ]);
             $net_total += $net_cost;

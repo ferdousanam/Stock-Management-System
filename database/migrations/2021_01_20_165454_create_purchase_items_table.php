@@ -21,6 +21,7 @@ class CreatePurchaseItemsTable extends Migration
             $table->decimal('net_cost', 10, 2)->default(0);
             $table->decimal('net_discount', 10, 2)->default(0);
             $table->integer('quantity')->default(1);
+            $table->date('expiry_date')->nullable();
             $table->string('status', 50)->nullable();
             $table->timestamps();
         });

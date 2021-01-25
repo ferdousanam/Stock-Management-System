@@ -1,3 +1,6 @@
 {
-    "/assets/admin/css/app.css": "/assets/admin/css/app.css"
+    "/js/app.js": "/js/app.js",
+    "/assets/admin/js/app.js": "/assets/admin/js/app.js",
+    "/assets/admin/css/app.css": "/assets/admin/css/app.css",
+    "/css/app.css": "/css/app.css"
 }

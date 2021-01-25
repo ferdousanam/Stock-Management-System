@@ -56,6 +56,12 @@
                     ...item,
                     net_cost: (item.price * item.quantity).toFixed(2)
                 }));
+            },
+            formatDate(date) {
+                if (date) {
+                    return moment(date).format('DD-MM-YYYY');
+                }
+                return '';
             }
         }
     });
