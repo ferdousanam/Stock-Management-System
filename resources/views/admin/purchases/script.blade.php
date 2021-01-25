@@ -30,10 +30,11 @@
         },
         methods: {
             add_product_item(item) {
+                const _this = this;
                 $('#add_item').val('');
                 let update = false;
                 this.products = this.products.map(el => {
-                    if (el.id === item.id) {
+                    if (el.product_id === item.id) {
                         update = true;
                         el.quantity++;
                         el.net_cost = (el.price * el.quantity).toFixed(2)
@@ -45,17 +46,30 @@
                 }
 
                 this.$nextTick(() => {
-                    $('.datepicker').datetimepicker(datepickerConfig);
+                    $('.expiry_date').datetimepicker({
+                        ...datepickerConfig,
+                        onChangeDateTime: function (currentDateTime, el) {
+                            _this.handleChangeExpiryDate(+el.attr('data-id'), currentDateTime)
+                        }
+                    });
                 });
             },
             remove_product_item(id) {
-                this.products = this.products.filter(item => item.id !== id);
+                this.products = this.products.filter(item => item.product_id !== id);
             },
             handleChangeQty() {
                 this.products = this.products.map(item => ({
                     ...item,
                     net_cost: (item.price * item.quantity).toFixed(2)
                 }));
+            },
+            handleChangeExpiryDate(id, value) {
+                this.products = this.products.map(item => {
+                    if (id === item.product_id) {
+                        item.expiry_date = value;
+                    }
+                    return item;
+                });
             },
             formatDate(date) {
                 if (date) {

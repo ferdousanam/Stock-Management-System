@@ -65,13 +65,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="item in products">
+                    <tr v-for="(item, index) in products">
                         <td>
                             @{{ item.title }} (@{{ item.product_code }})
                         </td>
                         <td>
                             <input name="product_id[]" type="hidden" :value="item.product_id">
-                            <input class="form-control datepicker" name="expiry_date[]" type="text" :value="formatDate(item.expiry_date)">
+                            <input class="form-control expiry_date" name="expiry_date[]" type="text" :value="formatDate(item.expiry_date)" :data-id="item.product_id">
                         </td>
                         <td class="text-right">
                             <span class="text-right">@{{ item.price }}</span>
