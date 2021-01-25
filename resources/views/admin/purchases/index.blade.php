@@ -44,8 +44,8 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <form method="GET" action="{{ route($pageResource.'.index') }}">
-                            <div class="d-flex justify-content-end">
-                                <div class="filter-input-box">
+                            <div class="row justify-content-end">
+                                <div class="form-group filter-input-box">
                                     <select class="form-control select2" name="service_id">
                                         <option value="">Service</option>
                                         @if (!empty($services))
@@ -56,11 +56,11 @@
                                     </select>
                                 </div>
 
-                                <div class="filter-input-box">
+                                <div class="form-group filter-input-box">
                                     <input type="text" class="form-control" name="q" value="{{ request('q') }}" placeholder="Search">
                                 </div>
 
-                                <div class="">
+                                <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-flat">Search</button>
                                     <a class="btn btn-warning btn-flat" href="{{ route($pageResource.'.index') }}">X</a>
                                 </div>

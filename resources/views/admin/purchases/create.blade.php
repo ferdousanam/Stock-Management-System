@@ -65,55 +65,5 @@
 @endsection
 
 @push('scripts')
-    <script>
-        vm = new Vue({
-            el: '#purchase_item',
-            data: {
-                products: [],
-            },
-            computed: {
-                totalQTy: function () {
-                    let total = 0;
-                    this.products.forEach(item => {
-                        total += +item.qty;
-                    });
-                    return total;
-                },
-                totalSubtotal: function () {
-                    let total = 0;
-                    this.products.forEach(item => {
-                        total += +item.subtotal;
-                    });
-                    return total.toFixed(2);
-                },
-            },
-            mounted() {
-                this.$nextTick(() => {
-                    $("#add_item").autocomplete(productSuggestions((item) => {
-                        this.add_product_item({...item, qty: 1, subtotal: item.price})
-                    }));
-                });
-            },
-            methods: {
-                add_product_item(item) {
-                    $('#add_item').val('');
-                    this.products.push(item);
-
-                    this.$nextTick(() => {
-                        $('.datepicker').datetimepicker(datepickerConfig);
-                        $('.quantity_balance_input').change(() => {
-                            this.products = this.products.map(item => ({
-                                ...item,
-                                qty: +(this.$refs['quantity_balance-' + item.id][0].value),
-                                subtotal: (item.price * +(this.$refs['quantity_balance-' + item.id][0].value)).toFixed(2)
-                            }));
-                        });
-                    });
-                },
-                remove_product_item(id) {
-                    this.products = this.products.filter(item => item.id !== id);
-                }
-            }
-        });
-    </script>
+    @include('admin.purchases.script')
 @endpush

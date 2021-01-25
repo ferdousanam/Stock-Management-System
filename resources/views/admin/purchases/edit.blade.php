@@ -18,7 +18,7 @@
         </section>
     @endif
 
-    <div class="card card-lightblue card-outline card-outline-tabs">
+    <div class="card card-lightblue card-outline card-outline-tabs" id="purchase_item">
         <div class="card-header p-0 border-bottom-0">
             <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
                 @if (Route::has($pageResource.'.index'))
@@ -54,14 +54,14 @@
                                 @method('PUT')
 
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-12">
 
                                         @include('admin.purchases.form')
 
-                                        <div class="form-group text-center">
-                                            <button type="submit" class="btn btn-success btn-flat btn-lg">Update
+                                        <div class="form-group px-2">
+                                            <button type="submit" class="btn btn-success btn-flat">Update
                                             </button>
-                                            <a href="{{ route($pageResource.'.index') }}" class="btn btn-warning btn-flat btn-lg">Back</a>
+                                            <a href="{{ route($pageResource.'.index') }}" class="btn btn-warning btn-flat">Back</a>
                                         </div>
                                     </div>
                                 </div>
@@ -73,3 +73,7 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    @include('admin.purchases.script')
+@endpush

@@ -2,7 +2,7 @@
     <div class="col-md-4 form-group{{ $errors->has('date', $data->date) ? ' has-error' : '' }}">
         <label for="date" class="control-label col-sm-12 required">Purchase Date:</label>
         <div class="col-sm-12">
-            <input type="text" class="form-control datepicker" name="date" id="date" value="{{ old('date', $data->date) }}" required>
+            <input type="text" class="form-control datepicker" name="date" id="date" value="{{ formatDate(old('date', $data->date)) }}" required>
 
             @if ($errors->has('date'))
                 <span class="help-block"><strong>{{ $errors->first('date') }}</strong></span>
@@ -13,7 +13,7 @@
     <div class="col-md-4 form-group{{ $errors->has('due_date', $data->due_date) ? ' has-error' : '' }}">
         <label for="due_date" class="control-label col-sm-12 required">Due Date:</label>
         <div class="col-sm-12">
-            <input type="text" class="form-control datepicker" name="due_date" id="due_date" value="{{ old('due_date', $data->due_date) }}" required>
+            <input type="text" class="form-control datepicker" name="due_date" id="due_date" value="{{ formatDate(old('due_date', $data->due_date)) }}" required>
 
             @if ($errors->has('due_date'))
                 <span class="help-block"><strong>{{ $errors->first('due_date') }}</strong></span>
@@ -27,8 +27,8 @@
             @php($payment_status = old('payment_status', $data->payment_status))
             <select class="form-control" name="payment_status" id="payment_status" required>
                 <option value="">Select Payment Status</option>
-                <option value="pending">Pending</option>
-                <option value="paid">Paid</option>
+                <option value="pending" {{$payment_status=='pending'?'selected':''}}>Pending</option>
+                <option value="paid" {{$payment_status=='paid'?'selected':''}}>Paid</option>
             </select>
 
             @if ($errors->has('payment_status'))
@@ -70,13 +70,14 @@
                             @{{ item.title }} (@{{ item.product_code }})
                         </td>
                         <td>
+                            <input name="product_id[]" type="hidden" :value="item.product_id">
                             <input class="form-control datepicker" name="expiry[]" type="text">
                         </td>
                         <td class="text-right">
                             <span class="text-right">@{{ item.price }}</span>
                         </td>
                         <td class="text-center">
-                            <input :ref="'quantity_balance-'+item.id" class="form-control text-center quantity_balance_input" name="quantity_balance[]" type="number" min="1" value="1">
+                            <input v-model="item.quantity" @input="handleChangeQty" class="form-control text-center" name="quantity[]" type="number" min="1" value="1">
                         </td>
                         <td class="text-right">
                             <span class="text-right text-danger">0.00</span>
@@ -85,7 +86,7 @@
                             <span class="text-right">0.00</span>
                         </td>
                         <td class="text-right">
-                            <span class="text-right">@{{ item.subtotal }}</span>
+                            <span class="text-right">@{{ item.net_cost }}</span>
                         </td>
                         <td class="text-center">
                             <i @click="remove_product_item(item.id)" class="fa fa-times tip" title="Remove" style="cursor:pointer;"></i>

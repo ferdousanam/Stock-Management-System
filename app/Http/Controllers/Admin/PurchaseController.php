@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\Purchase;
+use App\Models\PurchaseItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class PurchaseController extends Controller
@@ -17,7 +20,7 @@ class PurchaseController extends Controller
      */
     public function index(Request $request)
     {
-        $sql = Purchase::orderBy('date', 'desc');
+        $sql = Purchase::latest();
 
         $input = $request->all();
         if (!empty($input['q'])) {
@@ -51,17 +54,53 @@ class PurchaseController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'title' => 'required',
+            'date' => 'required',
+            'due_date' => 'required',
+            'payment_status' => 'required',
+            'product_id' => 'required',
         ]);
         $validator->validate();
 
+        $itemsFromDB = Product::whereIn('id', $request->product_id)->get();
+
+        $requestItems = [];
+        foreach ($request->product_id as $key => $product_id) {
+            $requestItems[$product_id] = [
+                'product_id' => $product_id,
+                'quantity' => $request->quantity[$key],
+                'status' => $request->payment_status,
+            ];
+        }
+
+        $purchaseItems = [];
+        $net_total = 0;
+        $net_discount = 0;
+        foreach ($itemsFromDB as $item) {
+            $net_cost = $item->price * $requestItems[$item->id]['quantity'];
+            $purchaseItems[] = new PurchaseItem([
+                'product_id' => $requestItems[$item->id]['product_id'],
+                'unit_cost' => $item->price,
+                'net_cost' => $net_cost,
+                'quantity' => $requestItems[$item->id]['quantity'],
+                'status' => $requestItems[$item->id]['status'],
+            ]);
+            $net_total += $net_cost;
+        }
+
         $input = $request->all();
-        $insert = Purchase::create([
-            'title' => $input['title'],
-        ]);
+        DB::transaction(function () use ($input, $net_total, $net_discount, $purchaseItems){
+            $purchase = Purchase::create([
+                'date' => formatDateDBFull($input['date']),
+                'due_date' => formatDateDBFull($input['due_date']),
+                'net_total' => $net_total,
+                'net_discount' => $net_discount,
+                'payment_status' => $input['payment_status'],
+            ]);
+            $purchase->purchaseItems()->saveMany($purchaseItems);
+        });
 
         $request->session()->flash("message", "Purchase added successfully!");
-        return redirect()->route('route.name.create');
+        return redirect()->route('admin.purchases.create');
     }
 
     /**
@@ -84,8 +123,13 @@ class PurchaseController extends Controller
      */
     public function edit($id)
     {
-        $data = Purchase::with('purchaseItems.product')->findOrFail($id);
-        return view('admin.purchases.edit', compact('data'));
+        $data = Purchase::findOrFail($id);
+        $purchaseItems = PurchaseItem::where('purchase_id', $id)
+            ->select('products.*')
+            ->addSelect('purchase_items.*')
+            ->join('products', 'purchase_items.product_id', '=', 'products.id')
+            ->get();
+        return view('admin.purchases.edit', compact('data', 'purchaseItems'));
     }
 
     /**
@@ -98,7 +142,10 @@ class PurchaseController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'title' => 'required',
+            'date' => 'required',
+            'due_date' => 'required',
+            'payment_status' => 'required',
+            'product_id' => 'required',
         ]);
         $validator->validate();
 
@@ -111,7 +158,7 @@ class PurchaseController extends Controller
         $data->update($updateData);
 
         $request->session()->flash("message", "Purchase updated successfully!");
-        return redirect()->route('route.name.edit', $id);
+        return redirect()->route('admin.purchases.edit', $id);
     }
 
     /**
@@ -124,6 +171,6 @@ class PurchaseController extends Controller
     {
         Purchase::destroy($id);
         session()->flash("message", "Purchase deleted successfully!");
-        return redirect()->route('route.name.index');
+        return redirect()->route('admin.purchases.index');
     }
 }

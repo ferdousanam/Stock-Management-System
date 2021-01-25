@@ -21,6 +21,7 @@ Route::group(['middleware' => ['auth'], 'as' => 'admin.'], function () {
     Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
         Route::get('/products/suggestions', [\App\Http\Controllers\Admin\Api\ProductController::class, 'suggestions']);
     });
+    Route::get('/admin', [\App\Http\Controllers\Admin\HomeController::class, 'index']);
     Route::get('/home', [\App\Http\Controllers\Admin\HomeController::class, 'index'])->name('home');
     Route::resource('/products', \App\Http\Controllers\Admin\ProductController::class);
     Route::resource('/categories', \App\Http\Controllers\Admin\CategoryController::class);
