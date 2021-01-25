@@ -22,7 +22,7 @@ class PurchaseFactory extends Factory
     public function definition()
     {
         return [
-            'purchase_code' => $this->faker->unique()->numerify('##########'),
+//            'purchase_code' => $this->faker->unique()->numerify('##########'),
             'net_total' => $this->faker->numberBetween(50, 10000),
             'net_discount' => $this->faker->numberBetween(0, 100),
             'payment_status' => $this->faker->randomElement(['pending', 'paid']),
