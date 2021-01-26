@@ -7,19 +7,16 @@
 
 @section('content')
     <div class="row">
-        <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-                <div class="inner">
-                    <h3>{{ $totalProducts }}</h3>
-                    <p>Products</p>
-                </div>
-                <div class="icon">
-                    <i class="ion ion-bag"></i>
-                </div>
-                <a href="{{ route('admin.products.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
-        <!-- ./col -->
+        <x-admin.dashboard.stat-box :count="$totalProducts" label="Products" :route="route('admin.products.index')" class="bg-teal">
+            <x-slot name="icon">
+                <i class="ion ion-bag"></i>
+            </x-slot>
+        </x-admin.dashboard.stat-box>
+
+        <x-admin.dashboard.stat-box :count="$totalStocks" label="Purchased Total" :route="route('admin.purchases.index')" class="bg-red">
+            <x-slot name="icon">
+                <i class="fas fa-star"></i>
+            </x-slot>
+        </x-admin.dashboard.stat-box>
     </div>
 @endsection
