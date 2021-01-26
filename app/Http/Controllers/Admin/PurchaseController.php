@@ -3,15 +3,35 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\PurchaseItem;
+use App\Repositories\ProductPurchaseRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class PurchaseController extends Controller
 {
+    /**
+     * @var ProductPurchaseRepository
+     */
+    private $productPurchaseRepository;
+
+    public function __construct(ProductPurchaseRepository $productPurchaseRepository) {
+        $this->productPurchaseRepository = $productPurchaseRepository;
+    }
+
+    private function validateRequest(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'date' => 'required',
+            'due_date' => 'required',
+            'payment_status' => 'required',
+            'product_id' => 'required',
+            'purchase_items' => 'required',
+        ]);
+        $validator->validate();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -53,53 +73,8 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'date' => 'required',
-            'due_date' => 'required',
-            'payment_status' => 'required',
-            'product_id' => 'required',
-        ]);
-        $validator->validate();
-
-        $itemsFromDB = Product::whereIn('id', $request->product_id)->get();
-
-        $requestItems = [];
-        foreach ($request->product_id as $key => $product_id) {
-            $requestItems[$product_id] = [
-                'product_id' => $product_id,
-                'quantity' => $request->quantity[$key],
-                'expiry_date' => $request->expiry_date[$key],
-                'status' => $request->payment_status,
-            ];
-        }
-
-        $purchaseItems = [];
-        $net_total = 0;
-        $net_discount = 0;
-        foreach ($itemsFromDB as $item) {
-            $net_cost = $item->price * $requestItems[$item->id]['quantity'];
-            $purchaseItems[] = new PurchaseItem([
-                'product_id' => $requestItems[$item->id]['product_id'],
-                'unit_cost' => $item->price,
-                'net_cost' => $net_cost,
-                'quantity' => $requestItems[$item->id]['quantity'],
-                'expiry_date' => formatDateDBFull($requestItems[$item->id]['expiry_date']),
-                'status' => $requestItems[$item->id]['status'],
-            ]);
-            $net_total += $net_cost;
-        }
-
-        $input = $request->all();
-        DB::transaction(function () use ($input, $net_total, $net_discount, $purchaseItems){
-            $purchase = Purchase::create([
-                'date' => formatDateDBFull($input['date']),
-                'due_date' => formatDateDBFull($input['due_date']),
-                'net_total' => $net_total,
-                'net_discount' => $net_discount,
-                'payment_status' => $input['payment_status'],
-            ]);
-            $purchase->purchaseItems()->saveMany($purchaseItems);
-        });
+        $this->validateRequest($request);
+        $this->productPurchaseRepository->store($request);
 
         $request->session()->flash("message", "Purchase added successfully!");
         return redirect()->route('admin.purchases.create');
@@ -129,6 +104,7 @@ class PurchaseController extends Controller
         $purchaseItems = PurchaseItem::where('purchase_id', $id)
             ->select('products.*')
             ->addSelect('purchase_items.*')
+            ->addSelect('purchase_items.id as purchase_item_id')
             ->join('products', 'purchase_items.product_id', '=', 'products.id')
             ->get();
         return view('admin.purchases.edit', compact('data', 'purchaseItems'));
@@ -143,21 +119,8 @@ class PurchaseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator = Validator::make($request->all(), [
-            'date' => 'required',
-            'due_date' => 'required',
-            'payment_status' => 'required',
-            'product_id' => 'required',
-        ]);
-        $validator->validate();
-
-        $input = $request->all();
-        $updateData = [
-            'title' => $input['title'],
-        ];
-
-        $data = Purchase::findOrFail($id);
-        $data->update($updateData);
+        $this->validateRequest($request);
+        $this->productPurchaseRepository->update($request, $id);
 
         $request->session()->flash("message", "Purchase updated successfully!");
         return redirect()->route('admin.purchases.edit', $id);

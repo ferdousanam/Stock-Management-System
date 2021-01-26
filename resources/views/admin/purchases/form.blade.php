@@ -67,17 +67,19 @@
                     <tbody>
                     <tr v-for="(item, index) in products">
                         <td>
+                            <input name="product_id[]" type="hidden" :value="item.product_id">
                             @{{ item.title }} (@{{ item.product_code }})
                         </td>
                         <td>
-                            <input name="product_id[]" type="hidden" :value="item.product_id">
-                            <input class="form-control expiry_date" name="expiry_date[]" type="text" autocomplete="off" :value="formatDate(item.expiry_date)" :data-id="item.product_id">
+                            <input v-if="item.purchase_item_id" :name="`purchase_items[${index}]['purchase_item_id']`" type="hidden" :value="item.purchase_item_id">
+                            <input :name="`purchase_items[${index}][product_id]`" type="hidden" :value="item.product_id">
+                            <input class="form-control expiry_date" :name="`purchase_items[${index}][expiry_date]`" type="text" autocomplete="off" :value="formatDate(item.expiry_date)" :data-id="item.product_id">
                         </td>
                         <td class="text-right">
                             <span class="text-right">@{{ item.price }}</span>
                         </td>
                         <td class="text-center">
-                            <input v-model="item.quantity" @input="handleChangeQty" class="form-control text-center" name="quantity[]" type="number" min="1" value="1">
+                            <input v-model="item.quantity" @input="handleChangeQty" class="form-control text-center" :name="`purchase_items[${index}][quantity]`" type="number" min="1" value="1">
                         </td>
                         <td class="text-right">
                             <span class="text-right text-danger">0.00</span>
@@ -89,7 +91,7 @@
                             <span class="text-right">@{{ item.net_cost }}</span>
                         </td>
                         <td class="text-center">
-                            <i @click="remove_product_item(item.id)" class="fa fa-times tip" title="Remove" style="cursor:pointer;"></i>
+                            <i @click="remove_product_item(item.product_id)" class="fa fa-times tip" title="Remove" style="cursor:pointer;"></i>
                         </td>
                     </tr>
                     </tbody>
