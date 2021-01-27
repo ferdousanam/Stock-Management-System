@@ -35,16 +35,16 @@
                         <p>Products</p>
                     </a>
                 </li>
-                <li class="nav-item" id="stock-management-mm">
-                    <a href="{{ url('/stock-management') }}" class="nav-link">
-                        <i class="nav-icon fas fa-cubes"></i>
-                        <p>Stock Management</p>
-                    </a>
-                </li>
                 <li class="nav-item" id="purchases-mm">
                     <a href="{{ url('/purchases') }}" class="nav-link">
                         <i class="nav-icon fas fa-star"></i>
                         <p>Purchases</p>
+                    </a>
+                </li>
+                <li class="nav-item" id="sales-mm">
+                    <a href="{{ url('/sales') }}" class="nav-link">
+                        <i class="nav-icon fas fa-heart"></i>
+                        <p>Sales</p>
                     </a>
                 </li>
                 <li class="nav-item" id="transfers-mm">
@@ -57,6 +57,12 @@
                     <a href="{{ url('/returns') }}" class="nav-link">
                         <i class="nav-icon fas fa-random"></i>
                         <p>Returns</p>
+                    </a>
+                </li>
+                <li class="nav-item" id="stock-management-mm">
+                    <a href="{{ url('/stock-management') }}" class="nav-link">
+                        <i class="nav-icon fas fa-cubes"></i>
+                        <p>Stock Management</p>
                     </a>
                 </li>
                 <li class="nav-item" id="users-mm">
