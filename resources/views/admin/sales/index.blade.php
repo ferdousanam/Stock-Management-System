@@ -85,7 +85,6 @@
                                                 <td>{{$record->payment_status}}</td>
                                                 <td>{{formatDate($record->due_date)}}</td>
                                                 <td>{{formatDateTime($record->created_at)}}</td>
-                                                <td>{{formatDateTime($record->created_at)}}</td>
                                                 <td class="text-center">
                                                     @php
                                                         $access = 1;

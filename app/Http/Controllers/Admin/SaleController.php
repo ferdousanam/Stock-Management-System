@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Sale;
 use App\Http\Controllers\Controller;
+use App\Models\SaleItem;
 use App\Repositories\ProductSaleRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -72,18 +73,11 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'title' => 'required',
-        ]);
-        $validator->validate();
-
-        $input = $request->all();
-        $insert = Sale::create([
-            'title' => $input['title'],
-        ]);
+        $this->validateRequest($request);
+        $this->productSaleRepository->store($request);
 
         $request->session()->flash("message", "Sale added successfully!");
-        return redirect()->route('route.name.create');
+        return redirect()->route('admin.sales.create');
     }
 
     /**
@@ -107,7 +101,13 @@ class SaleController extends Controller
     public function edit($id)
     {
         $data = Sale::findOrFail($id);
-        return view('admin.sales.edit', compact('data'));
+        $saleItems = SaleItem::where('sale_id', $id)
+            ->select('products.*')
+            ->addSelect('sale_items.*')
+            ->addSelect('sale_items.id as sale_item_id')
+            ->join('products', 'sale_items.product_id', '=', 'products.id')
+            ->get();
+        return view('admin.sales.edit', compact('data', 'saleItems'));
     }
 
     /**
@@ -119,21 +119,11 @@ class SaleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator = Validator::make($request->all(), [
-            'title' => 'required',
-        ]);
-        $validator->validate();
-
-        $input = $request->all();
-        $updateData = [
-            'title' => $input['title'],
-        ];
-
-        $data = Sale::findOrFail($id);
-        $data->update($updateData);
+        $this->validateRequest($request);
+        $this->productSaleRepository->update($request, $id);
 
         $request->session()->flash("message", "Sale updated successfully!");
-        return redirect()->route('route.name.edit', $id);
+        return redirect()->route('admin.sales.edit', $id);
     }
 
     /**
@@ -146,6 +136,6 @@ class SaleController extends Controller
     {
         Sale::destroy($id);
         session()->flash("message", "Sale deleted successfully!");
-        return redirect()->route('route.name.index');
+        return redirect()->route('admin.sales.index');
     }
 }

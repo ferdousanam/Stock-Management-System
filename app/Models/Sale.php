@@ -17,13 +17,13 @@ class Sale extends Model
         parent::boot();
 
         static::creating(function ($model) {
-            $model->sale_code = Purchase::saleCode();
+            $model->sale_code = Sale::saleCode();
         });
     }
 
     public static function saleCode()
     {
-        $data = Purchase::select('sale_code')
+        $data = Sale::select('sale_code')
             ->where(DB::raw("YEAR(created_at)"), date('Y'))
             ->where(DB::raw("MONTH(created_at)"), date('m'))
             ->orderBy('sale_code', 'DESC')
