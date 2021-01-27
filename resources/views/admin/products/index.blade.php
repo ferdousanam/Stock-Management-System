@@ -100,8 +100,8 @@
                                             <tr>
                                                 <td>{{$serial++}}</td>
                                                 <td>{{$record->title}}</td>
-                                                <td>{{$record->brand->title}}</td>
-                                                <td>{{$record->category->title}}</td>
+                                                <td>{{$record->product_brand_title}}</td>
+                                                <td>{{$record->product_category_title}}</td>
                                                 <td>{{$record->price}}</td>
                                                 <td class="text-right">{{$record->alert_quantity}}</td>
                                                 <td>{{formatDateTime($record->created_at)}}</td>

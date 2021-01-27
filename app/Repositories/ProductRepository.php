@@ -24,7 +24,11 @@ class ProductRepository
     {
         $input = $request->all();
         $sql = $this->product
-            ->with(['category', 'brand'])
+            ->select('products.*')
+            ->addSelect('product_categories.title as product_category_title')
+            ->addSelect('product_brands.title as product_brand_title')
+            ->leftJoin('product_categories', 'product_categories.id', '=', 'products.product_category_id')
+            ->leftJoin('product_brands', 'product_brands.id', '=', 'products.product_brand_id')
             ->orderBy('id', 'desc');
         if (!empty($input['q'])) {
             $sql->where('title', 'LIKE', '%' . $input['q'] . '%');
