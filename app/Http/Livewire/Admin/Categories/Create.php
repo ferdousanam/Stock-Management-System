@@ -15,12 +15,12 @@ class Create extends Component
 
     public function addCategory()
     {
+        $this->categories = ProductCategory::all();
         $this->dispatchBrowserEvent('showAddModal');
     }
 
     public function mount()
     {
-        $this->categories = ProductCategory::all();
         $this->data = new ProductCategory();
     }
 

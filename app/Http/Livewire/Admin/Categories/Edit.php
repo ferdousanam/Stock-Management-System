@@ -16,11 +16,12 @@ class Edit extends Component
 
     public function mount()
     {
-        $this->categories = ProductCategory::all();
+        //
     }
 
     public function editCategory($id)
     {
+        $this->categories = ProductCategory::all();
         $this->category_id = $id;
         $this->data = ProductCategory::find($id);
         $this->dispatchBrowserEvent('showEditModal');
