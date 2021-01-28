@@ -22,7 +22,7 @@ class ProductCategoryFactory extends Factory
      */
     public function definition()
     {
-        $title = $this->faker->sentence(3);
+        $title = $this->faker->department;
         return [
             'code' => $this->faker->unique()->numerify('######'),
             'title' => $title,

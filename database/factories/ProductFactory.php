@@ -24,7 +24,7 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
-        $title = $this->faker->sentence(3);
+        $title = $this->faker->productName;
         return [
             'product_code' => $this->faker->unique()->numerify('######'),
             'title' => $title,

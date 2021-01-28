@@ -3,7 +3,7 @@
 @php
     $pageTitle = 'Purchase';
     $pageResource = 'admin.purchases';
-    $activeNavSelector = '#-mm .nav-link';
+    $activeNavSelector = '#purchases-mm .nav-link';
 @endphp
 
 @section('content')
