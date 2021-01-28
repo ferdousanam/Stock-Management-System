@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Purchase;
 use App\Models\PurchaseItem;
+use App\Models\Warehouse;
 use App\Repositories\ProductPurchaseRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\View;
 
 class PurchaseController extends Controller
 {
@@ -18,6 +20,9 @@ class PurchaseController extends Controller
 
     public function __construct(ProductPurchaseRepository $productPurchaseRepository) {
         $this->productPurchaseRepository = $productPurchaseRepository;
+
+        $warehouses = Warehouse::all();
+        View::share('warehouses', $warehouses);
     }
 
     private function validateRequest(Request $request)
@@ -25,6 +30,7 @@ class PurchaseController extends Controller
         $validator = Validator::make($request->all(), [
             'date' => 'required',
             'due_date' => 'required',
+            'warehouse_id' => 'required',
             'payment_status' => 'required',
             'product_id' => 'required',
             'purchase_items' => 'required',

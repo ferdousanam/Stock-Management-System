@@ -27,6 +27,7 @@ class ProductSaleRepository
                 'unit_cost' => $dbItem->price,
                 'net_cost' => $net_cost,
                 'quantity' => $item['quantity'],
+                'warehouse_id' => $request->warehouse_id,
                 'status' => $request->payment_status,
             ]);
             $net_total += $net_cost;
@@ -39,6 +40,7 @@ class ProductSaleRepository
                 'due_date' => formatDateDBFull($input['due_date']),
                 'net_total' => $net_total,
                 'net_discount' => $net_discount,
+                'warehouse_id' => $input['warehouse_id'],
                 'payment_status' => $input['payment_status'],
             ]);
             $sale->saleItems()->saveMany($saleItems);
@@ -60,6 +62,7 @@ class ProductSaleRepository
                     'unit_cost' => $dbItem->price,
                     'net_cost' => $net_cost,
                     'quantity' => $item['quantity'],
+                    'warehouse_id' => $request->warehouse_id,
                     'status' => $request->payment_status,
                 ];
                 $net_total += $net_cost;
@@ -76,6 +79,7 @@ class ProductSaleRepository
                 'due_date' => formatDateDBFull($input['due_date']),
                 'net_total' => $net_total,
                 'net_discount' => $net_discount,
+                'warehouse_id' => $input['warehouse_id'],
                 'payment_status' => $input['payment_status'],
             ];
 

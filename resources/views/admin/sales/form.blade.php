@@ -36,6 +36,22 @@
             @endif
         </div>
     </div>
+
+    <div class="col-md-4 form-group{{ $errors->has('payment_status') ? ' has-error' : '' }}">
+        <label for="payment_status" class="control-label col-sm-12 required">Warehouse:</label>
+        <div class="col-sm-12">
+            @php($warehouse_id = old('warehouse_id', $data->warehouse_id))
+            <select class="form-control" name="warehouse_id" id="warehouse_id" required>
+                @foreach ($warehouses as $warehouse)
+                    <option value="{{$warehouse->id}}" {{($warehouse_id==$warehouse->id)?'selected':''}}>{{$warehouse->name}}</option>
+                @endforeach
+            </select>
+
+            @if ($errors->has('warehouse_id'))
+                <span class="help-block"><strong>{{ $errors->first('warehouse_id') }}</strong></span>
+            @endif
+        </div>
+    </div>
 </div>
 
 <div class="row">

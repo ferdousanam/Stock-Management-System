@@ -27,6 +27,7 @@ class ProductPurchaseRepository
                 'unit_cost' => $dbItem->price,
                 'net_cost' => $net_cost,
                 'quantity' => $item['quantity'],
+                'warehouse_id' => $request->warehouse_id,
                 'expiry_date' => formatDateDBFull($item['expiry_date']),
                 'status' => $request->payment_status,
             ]);
@@ -40,6 +41,7 @@ class ProductPurchaseRepository
                 'due_date' => formatDateDBFull($input['due_date']),
                 'net_total' => $net_total,
                 'net_discount' => $net_discount,
+                'warehouse_id' => $input['warehouse_id'],
                 'payment_status' => $input['payment_status'],
             ]);
             $purchase->purchaseItems()->saveMany($purchaseItems);
@@ -61,6 +63,7 @@ class ProductPurchaseRepository
                     'unit_cost' => $dbItem->price,
                     'net_cost' => $net_cost,
                     'quantity' => $item['quantity'],
+                    'warehouse_id' => $request->warehouse_id,
                     'expiry_date' => formatDateDBFull($item['expiry_date']),
                     'status' => $request->payment_status,
                 ];
@@ -78,6 +81,7 @@ class ProductPurchaseRepository
                 'due_date' => formatDateDBFull($input['due_date']),
                 'net_total' => $net_total,
                 'net_discount' => $net_discount,
+                'warehouse_id' => $input['warehouse_id'],
                 'payment_status' => $input['payment_status'],
             ];
 
