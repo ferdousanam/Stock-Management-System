@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Purchase;
+use App\Models\Warehouse;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PurchaseFactory extends Factory
@@ -26,6 +27,7 @@ class PurchaseFactory extends Factory
             'net_total' => $this->faker->numberBetween(50, 10000),
             'net_discount' => $this->faker->numberBetween(0, 100),
             'payment_status' => $this->faker->randomElement(['pending', 'paid']),
+            'warehouse_id' => Warehouse::inRandomOrder()->first()->id,
         ];
     }
 }

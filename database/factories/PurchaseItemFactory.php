@@ -27,14 +27,16 @@ class PurchaseItemFactory extends Factory
         $quantity = $this->faker->numberBetween(1, 100);
         $net_discount = $unit_cost * $quantity * 0.1;
         $net_cost = $unit_cost * $quantity - $net_discount;
+        $purchase = Purchase::inRandomOrder()->first();
         return [
-            'purchase_id' => Purchase::inRandomOrder()->first()->id,
+            'purchase_id' => $purchase->id,
             'product_id' => Product::inRandomOrder()->first()->id,
             'unit_cost' => $unit_cost,
             'net_cost' => $net_cost,
             'net_discount' => $net_discount,
             'quantity' => $quantity,
             'expiry_date' => $this->faker->dateTimeBetween($startDate = '+2 years', $endDate = '+5 years'),
+            'warehouse_id' => $purchase->warehouse_id,
             'status' => $this->faker->randomElement(['pending', 'received']),
         ];
     }

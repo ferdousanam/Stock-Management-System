@@ -21,6 +21,7 @@ class CreateSalesTable extends Migration
             $table->decimal('net_discount', 10, 2)->default(0);
             $table->string('payment_status', 50)->nullable();
             $table->date('due_date')->nullable();
+            $table->unsignedBigInteger('warehouse_id')->nullable();
             $table->timestamps();
         });
     }
