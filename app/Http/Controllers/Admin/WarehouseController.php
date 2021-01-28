@@ -58,7 +58,11 @@ class WarehouseController extends Controller
 
         $input = $request->all();
         $insert = Warehouse::create([
+            'code' => $input['code'],
             'name' => $input['name'],
+            'phone' => $input['phone'],
+            'email' => $input['email'],
+            'address' => $input['address'],
         ]);
 
         $request->session()->flash("message", "Warehouse added successfully!");
@@ -105,7 +109,11 @@ class WarehouseController extends Controller
 
         $input = $request->all();
         $updateData = [
+            'code' => $input['code'],
             'name' => $input['name'],
+            'phone' => $input['phone'],
+            'email' => $input['email'],
+            'address' => $input['address'],
         ];
 
         $data = Warehouse::findOrFail($id);
