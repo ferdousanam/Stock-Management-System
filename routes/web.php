@@ -29,4 +29,5 @@ Route::group(['middleware' => ['auth'], 'as' => 'admin.'], function () {
     Route::resource('/stock-management', \App\Http\Controllers\Admin\StockManagementController::class)->only('index');
     Route::resource('/purchases', \App\Http\Controllers\Admin\PurchaseController::class);
     Route::resource('/sales', \App\Http\Controllers\Admin\SaleController::class);
+    Route::resource('/warehouses', \App\Http\Controllers\Admin\WarehouseController::class);
 });

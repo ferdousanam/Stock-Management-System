@@ -1,8 +1,8 @@
 @extends('admin.layouts.app')
 
 @php
-    $pageTitle = 'Categories';
-    $pageResource = 'admin.categories';
+    $pageTitle = 'Warehouses';
+    $pageResource = 'admin.warehouses';
 @endphp
 
 @section('content')
@@ -61,9 +61,9 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <th style="width:230px;">Title</th>
+                                    <th style="width:230px;">Name</th>
                                     <th style="width:10px;">:</th>
-                                    <td>{{$data->title}}</td>
+                                    <td>{{$data->name}}</td>
                                 </tr>
                                 <tr>
                                     <th>Code</th>
@@ -71,19 +71,19 @@
                                     <td>{{ $data->code }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Slug</th>
+                                    <th>Phone</th>
                                     <th>:</th>
-                                    <td>{{ $data->slug }}</td>
+                                    <td>{{ $data->phone }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Description</th>
+                                    <th>Email</th>
                                     <th>:</th>
-                                    <td>{{ $data->description }}</td>
+                                    <td>{{ $data->email }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Created At</th>
+                                    <th>Address</th>
                                     <th>:</th>
-                                    <td>{{ $data->created_at }}</td>
+                                    <td>{{ $data->address }}</td>
                                 </tr>
 
                                 </tbody>

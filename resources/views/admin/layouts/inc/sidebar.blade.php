@@ -98,6 +98,12 @@
                                 <p>Categories</p>
                             </a>
                         </li>
+                        <li class="nav-item" id="warehouses-sm">
+                            <a href="{{ url('/warehouses') }}" class="nav-link">
+                                <i class="nav-icon far fa-building"></i>
+                                <p>Warehouses</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>
