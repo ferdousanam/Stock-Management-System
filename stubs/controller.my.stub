@@ -17,7 +17,7 @@ class {{ class }} extends Controller
      */
     public function index(Request $request)
     {
-        $sql = {{ model }}::orderBy('title');
+        $sql = {{ model }}::latest();
 
         $input = $request->all();
         if (!empty($input['q'])) {
@@ -123,7 +123,7 @@ class {{ class }} extends Controller
     public function destroy($id)
     {
         {{ model }}::destroy($id);
-        session()->flash("message", "{{ model }} deleted successfully!");
+        $request->session()->flash("message", "{{ model }} deleted successfully!");
         return redirect()->route('route.name.index');
     }
 }
