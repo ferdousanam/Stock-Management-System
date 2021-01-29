@@ -7,41 +7,12 @@
 
 @section('content')
 
-    @if (session('message'))
-        <section class="content-header">
-            <div class="alert alert-success" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                {{ session('message') }}
-            </div>
-        </section>
-    @endif
+    @include('admin.components.flash-message')
 
     <div class="card card-lightblue card-outline card-outline-tabs">
         <div class="card-header p-0 border-bottom-0">
             <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
-                @if (Route::has($pageResource.'.index'))
-                    <li class="nav-item">
-                        <a href="{{ route($pageResource.'.index') . qString() }}" class="nav-link">
-                            <i class="fa fa-list" aria-hidden="true"></i> {{ $pageTitle }} List
-                        </a>
-                    </li>
-                @endif
-
-                @if (Route::has($pageResource.'.create'))
-                    <li class="nav-item">
-                        <a href="{{ route($pageResource.'.create') . qString() }}" class="nav-link">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add {{ $pageTitle }}
-                        </a>
-                    </li>
-                @endif
-
-                <li class="nav-item">
-                    <a href="#" class="nav-link active">
-                        <i class="far fa-file-alt" aria-hidden="true"></i> {{ $pageTitle }} Details
-                    </a>
-                </li>
+                @include('admin.components.nav.show')
             </ul>
         </div>
 
@@ -61,16 +32,20 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <th style="width:230px;">Name</th>
+                                    <th style="width:230px;">ID</th>
                                     <th style="width:10px;">:</th>
-                                    <td>{{$data->name}}</td>
+                                    <td>{{ $data->id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>:</th>
+                                    <td>{{ $data->name }}</td>
                                 </tr>
                                 <tr>
                                     <th>Created At</th>
                                     <th>:</th>
                                     <td>{{ $data->created_at }}</td>
                                 </tr>
-
                                 </tbody>
                             </table>
                         @else
