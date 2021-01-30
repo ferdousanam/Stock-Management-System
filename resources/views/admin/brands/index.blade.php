@@ -9,16 +9,7 @@
 
 @section('content')
 
-    @if (session('message'))
-        <section class="content-header">
-            <div class="alert alert-success" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                {{ session('message') }}
-            </div>
-        </section>
-    @endif
+    @include('admin.components.flash-message')
 
     <livewire:admin.categories.create/>
     <livewire:admin.categories.edit/>
@@ -26,21 +17,7 @@
     <div class="card card-lightblue card-outline card-outline-tabs">
         <div class="card-header p-0 border-bottom-0">
             <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
-                @if (Route::has($pageResource.'.index'))
-                    <li class="nav-item">
-                        <a href="{{ route($pageResource.'.index') }}" class="nav-link active">
-                            <i class="fa fa-list" aria-hidden="true"></i> {{ $pageTitle }} List
-                        </a>
-                    </li>
-                @endif
-
-                @if (Route::has($pageResource.'.create'))
-                    <li class="nav-item">
-                        <a href="{{ route($pageResource.'.create') }}" class="nav-link">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add {{ $pageTitle }}
-                        </a>
-                    </li>
-                @endif
+                @include('admin.components.nav.index')
             </ul>
         </div>
         <div class="card-body">
