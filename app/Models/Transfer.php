@@ -17,13 +17,13 @@ class Transfer extends Model
         parent::boot();
 
         static::creating(function ($model) {
-            $model->transfer_code = Purchase::transferCode();
+            $model->transfer_code = Transfer::transferCode();
         });
     }
 
     public static function transferCode()
     {
-        $data = Purchase::select('transfer_code')
+        $data = Transfer::select('transfer_code')
             ->where(DB::raw("YEAR(created_at)"), date('Y'))
             ->where(DB::raw("MONTH(created_at)"), date('m'))
             ->orderBy('transfer_code', 'DESC')

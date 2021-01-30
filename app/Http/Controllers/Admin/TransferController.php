@@ -3,12 +3,40 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\PurchaseItem;
 use App\Models\Transfer;
+use App\Models\Warehouse;
+use App\Repositories\ProductTransferRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\View;
 
 class TransferController extends Controller
 {
+    /**
+     * @var ProductTransferRepository
+     */
+    private $productTransferRepository;
+
+    public function __construct(ProductTransferRepository $productTransferRepository) {
+        $this->productTransferRepository = $productTransferRepository;
+
+        $warehouses = Warehouse::all();
+        View::share('warehouses', $warehouses);
+    }
+
+    private function validateRequest(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'date' => 'required',
+            'from_warehouse_id' => 'required',
+            'to_warehouse_id' => 'required',
+            'product_id' => 'required',
+            'transfer_items' => 'required',
+        ]);
+        $validator->validate();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +45,7 @@ class TransferController extends Controller
      */
     public function index(Request $request)
     {
-        $sql = Transfer::with(['fromWarehouse', 'toWarehouse'])->latest();
+        $sql = Transfer::with(['fromWarehouse', 'toWarehouse'])->orderByDesc('id');
 
         $input = $request->all();
         if (!empty($input['q'])) {
@@ -50,15 +78,8 @@ class TransferController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'title' => 'required',
-        ]);
-        $validator->validate();
-
-        $input = $request->all();
-        $insert = Transfer::create([
-            'title' => $input['title'],
-        ]);
+        $this->validateRequest($request);
+        $this->productTransferRepository->store($request);
 
         $request->session()->flash("message", "Transfer added successfully!");
         return redirect()->route('admin.transfers.create');
@@ -85,7 +106,13 @@ class TransferController extends Controller
     public function edit($id)
     {
         $data = Transfer::findOrFail($id);
-        return view('admin.transfers.edit', compact('data'));
+        $transferItems = PurchaseItem::where(['purchasable_id' => $id, 'purchasable_type' => Transfer::class])
+            ->select('products.*')
+            ->addSelect('purchase_items.*')
+            ->addSelect('purchase_items.id as transfer_item_id')
+            ->join('products', 'purchase_items.product_id', '=', 'products.id')
+            ->get();
+        return view('admin.transfers.edit', compact('data', 'transferItems'));
     }
 
     /**
@@ -97,18 +124,8 @@ class TransferController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator = Validator::make($request->all(), [
-            'title' => 'required',
-        ]);
-        $validator->validate();
-
-        $input = $request->all();
-        $updateData = [
-            'title' => $input['title'],
-        ];
-
-        $data = Transfer::findOrFail($id);
-        $data->update($updateData);
+        $this->validateRequest($request);
+        $this->productTransferRepository->update($request, $id);
 
         $request->session()->flash("message", "Transfer updated successfully!");
         return redirect()->route('admin.transfers.edit', $id);

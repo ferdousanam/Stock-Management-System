@@ -1,15 +1,15 @@
 @extends('admin.layouts.app')
 
 @php
-    $pageTitle = '<?php print $pageTitle ?>';
-    $pageResource = '<?php print $pageResource ?>';
+    $pageTitle = 'Transfers';
+    $pageResource = 'admin.transfers';
 @endphp
 
 @section('content')
 
     @include('admin.components.flash-message')
 
-    <div class="card card-lightblue card-outline card-outline-tabs">
+    <div class="card card-lightblue card-outline card-outline-tabs" id="transfer_item">
         <div class="card-header p-0 border-bottom-0">
             <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
                 @include('admin.components.nav.create')
@@ -23,9 +23,9 @@
                             @csrf
 
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-12">
 
-                                    @include('<?php print $pageResource ?>.form')
+                                    @include('admin.transfers.form')
 
                                     <div class="form-group px-2">
                                         <button type="submit" class="btn btn-success btn-flat">Create</button>
@@ -40,3 +40,7 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    @include('admin.transfers.script')
+@endpush
