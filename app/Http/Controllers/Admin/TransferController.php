@@ -139,7 +139,7 @@ class TransferController extends Controller
      */
     public function destroy($id)
     {
-        Transfer::destroy($id);
+        $this->productTransferRepository->delete($id);
         session()->flash("message", "Transfer deleted successfully!");
         return redirect()->route('admin.transfers.index');
     }

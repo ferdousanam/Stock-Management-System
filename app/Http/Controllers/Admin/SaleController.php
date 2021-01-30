@@ -140,7 +140,7 @@ class SaleController extends Controller
      */
     public function destroy($id)
     {
-        Sale::destroy($id);
+        $this->productSaleRepository->delete($id);
         session()->flash("message", "Sale deleted successfully!");
         return redirect()->route('admin.sales.index');
     }

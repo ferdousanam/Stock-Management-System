@@ -87,4 +87,11 @@ class ProductSaleRepository
             $sale->update($updateData);
         });
     }
+
+    public function delete($id)
+    {
+        $sale = Sale::findOrFail($id);
+        $sale->saleItems()->delete();
+        $sale->delete();
+    }
 }

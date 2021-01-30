@@ -89,4 +89,11 @@ class ProductTransferRepository
             $transfer->update($updateData);
         });
     }
+
+    public function delete($id)
+    {
+        $transfer = Transfer::findOrFail($id);
+        $transfer->transferItems()->delete();
+        $transfer->delete();
+    }
 }

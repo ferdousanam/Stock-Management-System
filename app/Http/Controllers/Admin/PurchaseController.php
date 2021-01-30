@@ -140,7 +140,7 @@ class PurchaseController extends Controller
      */
     public function destroy($id)
     {
-        Purchase::destroy($id);
+        $this->productPurchaseRepository->delete($id);
         session()->flash("message", "Purchase deleted successfully!");
         return redirect()->route('admin.purchases.index');
     }

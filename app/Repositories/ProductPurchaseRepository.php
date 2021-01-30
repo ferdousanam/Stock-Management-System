@@ -91,4 +91,11 @@ class ProductPurchaseRepository
             $purchase->update($updateData);
         });
     }
+
+    public function delete($id)
+    {
+        $purchase = Purchase::findOrFail($id);
+        $purchase->purchaseItems()->delete();
+        $purchase->delete();
+    }
 }
