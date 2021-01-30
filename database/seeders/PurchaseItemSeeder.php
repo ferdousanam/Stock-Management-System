@@ -16,6 +16,6 @@ class PurchaseItemSeeder extends Seeder
     {
         \App\Models\PurchaseItem::factory(500)->create();
 
-        DB::statement("UPDATE purchases SET purchases.net_total = IFNULL((SELECT SUM(purchase_items.net_cost) FROM purchase_items WHERE purchase_items.purchase_id = purchases.id GROUP BY purchase_id), 0)");
+        DB::statement("UPDATE purchases SET purchases.net_total = IFNULL((SELECT SUM(purchase_items.net_cost) FROM purchase_items WHERE purchase_items.purchasable_id = purchases.id AND purchase_items.purchasable_type = 'App\\\Models\\\Purchase' GROUP BY purchasable_id), 0)");
     }
 }

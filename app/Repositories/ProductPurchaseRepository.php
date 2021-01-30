@@ -69,11 +69,13 @@ class ProductPurchaseRepository
                 ];
                 $net_total += $net_cost;
                 PurchaseItem::updateOrCreate([
-                    'purchase_id' => $id,
+                    'purchasable_id' => $id,
+                    'purchasable_type' => Purchase::class,
                     'product_id' => $purchaseItem['product_id'],
                 ], $purchaseItem);
             }
-            PurchaseItem::whereNotIn('product_id', $request->product_id)->delete();
+            PurchaseItem::where(['purchasable_id' => $id, 'purchasable_type' => Purchase::class])
+                ->whereNotIn('product_id', $request->product_id)->delete();
 
             $input = $request->all();
             $updateData = [

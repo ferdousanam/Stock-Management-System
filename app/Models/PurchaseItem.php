@@ -11,9 +11,9 @@ class PurchaseItem extends Model
 
     protected $guarded = ['id'];
 
-    public function purchase()
+    public function purchasable()
     {
-        return $this->belongsTo(Purchase::class);
+        return $this->morphTo();
     }
 
     public function product()

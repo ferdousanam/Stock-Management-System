@@ -107,7 +107,7 @@ class PurchaseController extends Controller
     public function edit($id)
     {
         $data = Purchase::findOrFail($id);
-        $purchaseItems = PurchaseItem::where('purchase_id', $id)
+        $purchaseItems = PurchaseItem::where(['purchasable_id' => $id, 'purchasable_type' => Purchase::class])
             ->select('products.*')
             ->addSelect('purchase_items.*')
             ->addSelect('purchase_items.id as purchase_item_id')

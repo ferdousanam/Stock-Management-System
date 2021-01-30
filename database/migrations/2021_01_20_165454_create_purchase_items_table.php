@@ -15,7 +15,8 @@ class CreatePurchaseItemsTable extends Migration
     {
         Schema::create('purchase_items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('purchase_id');
+            $table->unsignedBigInteger('purchasable_id');
+            $table->string('purchasable_type');
             $table->unsignedBigInteger('product_id');
             $table->decimal('unit_cost', 10, 2)->default(0);
             $table->decimal('net_cost', 10, 2)->default(0);

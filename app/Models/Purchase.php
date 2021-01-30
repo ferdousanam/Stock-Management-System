@@ -40,6 +40,6 @@ class Purchase extends Model
 
     public function purchaseItems()
     {
-        return $this->hasMany(PurchaseItem::class);
+        return $this->morphMany(PurchaseItem::class, 'purchasable');
     }
 }

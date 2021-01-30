@@ -123,7 +123,7 @@ class {{ class }} extends Controller
     public function destroy($id)
     {
         {{ model }}::destroy($id);
-        $request->session()->flash("message", "{{ model }} deleted successfully!");
+        session()->flash("message", "{{ model }} deleted successfully!");
         return redirect()->route('route.name.index');
     }
 }

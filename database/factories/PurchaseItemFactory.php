@@ -29,7 +29,8 @@ class PurchaseItemFactory extends Factory
         $net_cost = $unit_cost * $quantity - $net_discount;
         $purchase = Purchase::inRandomOrder()->first();
         return [
-            'purchase_id' => $purchase->id,
+            'purchasable_id' => $purchase->id,
+            'purchasable_type' => Purchase::class,
             'product_id' => Product::inRandomOrder()->first()->id,
             'unit_cost' => $unit_cost,
             'net_cost' => $net_cost,
