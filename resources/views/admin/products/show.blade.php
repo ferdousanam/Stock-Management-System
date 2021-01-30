@@ -52,6 +52,11 @@
                                     <td>{{$data->price}}</td>
                                 </tr>
                                 <tr>
+                                    <th>Quantity</th>
+                                    <th>:</th>
+                                    <td>{{$data->remaining_quantity}}</td>
+                                </tr>
+                                <tr>
                                     <th>Created At</th>
                                     <th>:</th>
                                     <td>{{ $data->created_at }}</td>

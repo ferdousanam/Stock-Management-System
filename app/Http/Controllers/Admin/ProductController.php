@@ -85,7 +85,10 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $data = Product::with(['category', 'brand'])->findOrFail($id);
+        $sql = Product::with(['category', 'brand'])
+            ->select('products.*')
+            ->where('id', $id);
+        $data = $this->productRepository->addSelectProductQty($sql)->first();
         return view('admin.products.show', compact('data'));
     }
 
