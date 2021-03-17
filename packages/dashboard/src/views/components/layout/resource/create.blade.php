@@ -7,7 +7,7 @@
     <div class="card card-lightblue card-outline card-outline-tabs">
         <div class="card-header p-0 border-bottom-0">
             <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
-                @include('admin.components.nav.create')
+                @include('admin::components.nav.create')
             </ul>
         </div>
         <div class="card-body">
