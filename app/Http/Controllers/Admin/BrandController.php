@@ -58,6 +58,7 @@ class BrandController extends Controller
 
         $input = $request->all();
         $insert = ProductBrand::create([
+            'code' => str_pad(rand(0, pow(10, 6)-1), 6, '0', STR_PAD_LEFT),
             'title' => $input['title'],
         ]);
 
