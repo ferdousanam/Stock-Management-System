@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('admin::layouts.app')
 
 @php
     $pageTitle = 'Products';

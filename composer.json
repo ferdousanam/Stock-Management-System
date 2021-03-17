@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "ferdousanam/adminlte3": "*",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -71,6 +72,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/hassanhe/laravel-faker-provider-collection"
+        },
+        {
+            "type": "path",
+            "url": "packages/dashboard"
         }
     ]
 }

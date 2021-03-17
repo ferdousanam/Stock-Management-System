@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "63f3294c5695cfc1016b3cb04b849a37",
+    "content-hash": "249c4950e82cf4a523d8138ac5941bae",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -558,6 +558,46 @@
                 }
             ],
             "time": "2020-12-29T14:50:06+00:00"
+        },
+        {
+            "name": "ferdousanam/adminlte3",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "packages/dashboard",
+                "reference": "f1e548cc0e4bea0ba7b9413c6f66f21f31dc0184"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Anam\\Dashboard\\DashboardServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Anam\\Dashboard\\": "src/",
+                    "Anam\\Dashboard\\App\\": "src/app/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ferdous Anam",
+                    "email": "ferdous.anam@gmail.com"
+                }
+            ],
+            "description": "This package contains with adminlte 3 layout",
+            "keywords": [
+                "adminlte3",
+                "laravel"
+            ],
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "fideloper/proxy",
