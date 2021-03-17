@@ -1,0 +1,31 @@
+{
+    "name": "ferdousanam/adminlte3",
+    "description": "This package contains with adminlte 3 layout",
+    "keywords": ["laravel", "adminlte3"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ferdous Anam",
+            "email": "ferdous.anam@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Anam\\Dashboard\\": "src/",
+            "Anam\\Dashboard\\App\\": "src/app/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Anam\\Dashboard\\DashboardServiceProvider"
+            ]
+        }
+    }
+}

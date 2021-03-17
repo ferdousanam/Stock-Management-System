@@ -35,9 +35,9 @@
 
 <div id="app" class="wrapper">
 
-@include('admin.layouts.inc.header')
+@include('admin::layouts.inc.header')
 
-@include('admin.layouts.inc.sidebar')
+@include('admin.sidebar')
 
 <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -57,7 +57,7 @@
     </div>
     <!-- /.content-wrapper -->
 
-    @include('admin.layouts.inc.footer')
+    @include('admin::layouts.inc.footer')
 </div>
 <!-- ./wrapper -->
 
@@ -66,14 +66,14 @@
 <!-- Scripts -->
 <script src="{{ asset('assets/admin/js/app.js') }}"></script>
 
-{{--@include('admin.layouts.inc.scripts')--}}
+{{--@include('admin::layouts.inc.scripts')--}}
 <script>
     $(document).ready(function () {
         @if (isset($activeNavSelector))
-            $("{{$activeNavSelector}}").addClass('active');
+        $("{{$activeNavSelector}}").addClass('active');
         @endif
         @if (isset($activeNavParentSelector))
-            $("{{$activeNavParentSelector}}").addClass('menu-open').find('.tree-opener').addClass('active');
+        $("{{$activeNavParentSelector}}").addClass('menu-open').find('.tree-opener').addClass('active');
         @endif
     });
 </script>
