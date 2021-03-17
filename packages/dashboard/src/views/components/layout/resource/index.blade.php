@@ -69,6 +69,10 @@
 
 @endsection
 
+@push('styles')
+    {{ $styles ?? null }}
+@endpush
+
 @push('scripts')
     {{ $scripts ?? null }}
 @endpush
