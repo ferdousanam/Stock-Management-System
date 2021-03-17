@@ -3,6 +3,11 @@
 @endphp
 
 <x-admin::layout.resource.index pageTitle="Brands" :pageResource="$pageResource" :records="$records" activeNavSelector="#brands-sm .nav-link" activeNavParentSelector="#settings-mm.nav-item">
+    <x-slot name="top">
+        <livewire:admin.categories.create/>
+        <livewire:admin.categories.edit/>
+    </x-slot>
+
     <x-slot name="filter"></x-slot>
 
     <thead>

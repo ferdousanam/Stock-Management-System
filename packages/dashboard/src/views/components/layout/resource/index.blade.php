@@ -13,6 +13,8 @@
 
     @include('admin.components.flash-message')
 
+    {{ $top ?? null }}
+
     <div class="card card-lightblue card-outline card-outline-tabs">
         <div class="card-header p-0 border-bottom-0">
             <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
@@ -62,6 +64,9 @@
         </div>
         <!-- /.card -->
     </div>
+
+    {{ $bottom ?? null }}
+
 @endsection
 
 @push('scripts')
