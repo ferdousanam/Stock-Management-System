@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Warehouse;
 use App\Repositories\ProductStockRepository;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -37,8 +38,10 @@ class StockManagementController extends Controller
         $sql = $sql->getSql();
 
         if (!empty($request->input('q'))) {
-            $sql->where('products.title', 'LIKE', '%' . $request->input('q') . '%')
-                ->orWhere('products.product_code', 'LIKE', '%' . $request->input('q') . '%');
+            $sql->where(function (Builder $sql) use ($request) {
+                $sql->where('products.title', 'LIKE', '%' . $request->input('q') . '%')
+                    ->orWhere('products.product_code', 'LIKE', '%' . $request->input('q') . '%');
+            });
         }
 
         $perPage = 25;
