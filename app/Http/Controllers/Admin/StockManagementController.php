@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Warehouse;
 use App\Repositories\ProductStockRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -27,19 +28,26 @@ class StockManagementController extends Controller
      */
     public function index(Request $request)
     {
-        $sql = $this->productStockRepository->getSql();
+        $sql = $this->productStockRepository;
 
-        $input = $request->all();
-        if (!empty($input['q'])) {
-            $sql->where('products.title', 'LIKE', '%' . $input['q'] . '%')
-                ->orWhere('products.product_code', 'LIKE', '%' . $input['q'] . '%');
+        if (!empty($request->input('warehouse'))) {
+            $sql->filterByWarehouse($request->input('warehouse'));
+        }
+
+        $sql = $sql->getSql();
+
+        if (!empty($request->input('q'))) {
+            $sql->where('products.title', 'LIKE', '%' . $request->input('q') . '%')
+                ->orWhere('products.product_code', 'LIKE', '%' . $request->input('q') . '%');
         }
 
         $perPage = 25;
         $records = $sql->paginate($perPage);
         $serial = $records->currentPage() * $records->perPage() - $records->perPage() + 1;
 
-        return view('admin.stock-management.index', compact('serial', 'records'));
+        $warehouses = Warehouse::all();
+
+        return view('admin.stock-management.index', compact('serial', 'records', 'warehouses'));
     }
 
     /**

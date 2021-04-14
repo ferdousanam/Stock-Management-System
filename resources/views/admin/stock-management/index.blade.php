@@ -22,6 +22,17 @@
                     <div class="col-sm-12">
                         <form method="GET" action="{{ route($pageResource.'.index') }}">
                             <div class="d-flex justify-content-end">
+                                @if (!empty($warehouses))
+                                    <div class="filter-input-box">
+                                        <select class="form-control select2" name="warehouse">
+                                            <option value="">All Warehouses</option>
+                                                @foreach ($warehouses as $warehouse)
+                                                    <option value="{{$warehouse->id}}" {{(request('warehouse')==$warehouse->id)?'selected':''}}>{{$warehouse->name}}</option>
+                                                @endforeach
+                                        </select>
+                                    </div>
+                                @endif
+
                                 <div class="filter-input-box">
                                     <input type="text" class="form-control" name="q" value="{{ request('q') }}" placeholder="Search">
                                 </div>
@@ -46,6 +57,8 @@
                                             <th>Product Brand</th>
                                             <th>Product Category</th>
                                             <th>Purchase Total</th>
+                                            <th>Sale Total</th>
+                                            <th>Stock Total</th>
                                             <th class="text-center not-export-col">Action</th>
                                         </tr>
                                         </thead>
@@ -58,6 +71,8 @@
                                                 <td>{{$record->brand}}</td>
                                                 <td>{{$record->category}}</td>
                                                 <td class="text-right">{{$record->purchase_total}}</td>
+                                                <td class="text-right">{{$record->sale_total}}</td>
+                                                <td class="text-right">{{$record->stock_total}}</td>
                                                 <td class="text-center">
                                                     @php
                                                         $access = 1;
