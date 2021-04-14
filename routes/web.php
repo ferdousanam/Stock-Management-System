@@ -33,4 +33,5 @@ Route::group(['middleware' => ['auth'], 'as' => 'admin.'], function () {
     Route::resource('/warehouses', \App\Http\Controllers\Admin\WarehouseController::class);
 
     Route::resource('/users', \App\Http\Controllers\Admin\UserController::class);
+    Route::resource('/system-settings', \App\Http\Controllers\Admin\SystemSettingController::class)->only('index', 'store');
 });
