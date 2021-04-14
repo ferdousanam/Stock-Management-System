@@ -3,6 +3,7 @@
 
 namespace Anam\Dashboard;
 
+use Anam\Dashboard\App\Providers\ViewServiceProvider;
 use Illuminate\Support\ServiceProvider;
 
 class DashboardServiceProvider extends ServiceProvider
@@ -14,7 +15,7 @@ class DashboardServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->register(ViewServiceProvider::class);
     }
 
     /**
