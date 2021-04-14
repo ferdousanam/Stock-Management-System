@@ -5,6 +5,7 @@ namespace App\Repositories;
 
 
 use App\Models\Product;
+use App\Models\Transfer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -30,6 +31,7 @@ class ProductRepository
     {
         $purchase_items = DB::table('purchase_items')
             ->select('product_id', DB::raw("SUM(quantity) as purchase_quantity"))
+            ->where('purchasable_type', '<>', Transfer::class)
             ->groupBy('product_id');
 
         $sale_items = DB::table('sale_items')
@@ -62,7 +64,8 @@ class ProductRepository
             ->orderBy('id', 'desc');
         $sql = $this->addSelectProductQty($sql);
         if (!empty($input['q'])) {
-            $sql->where('title', 'LIKE', '%' . $input['q'] . '%');
+            $sql->where('products.title', 'LIKE', '%' . $input['q'] . '%')
+                ->orWhere('products.product_code', 'LIKE', '%' . $input['q'] . '%');
         }
         if (!empty($input['product_brand_id'])) {
             $sql->where('product_brand_id', $input['product_brand_id']);
