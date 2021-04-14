@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
+    "name": "ferdousanam/stock-management-system",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "A Warehouse/Stock Management System build with Laravel Framework.",
     "keywords": [
         "framework",
         "laravel"

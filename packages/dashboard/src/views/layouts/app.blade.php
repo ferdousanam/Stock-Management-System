@@ -21,7 +21,7 @@
     @livewireStyles
 
     <!-- Styles -->
-    <link href="{{ asset('assets/admin/css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('assets/admin/css/app.css') }}" rel="stylesheet">
     @stack('styles')
     <script> var base_url = '{{ url("/") }}'; </script>
 </head>
@@ -64,7 +64,7 @@
 @livewireScripts
 
 <!-- Scripts -->
-<script src="{{ asset('assets/admin/js/app.js') }}"></script>
+<script src="{{ mix('assets/admin/js/app.js') }}"></script>
 
 {{--@include('admin::layouts.inc.scripts')--}}
 <script>
