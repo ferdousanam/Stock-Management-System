@@ -4,6 +4,7 @@
         el: '#sale_item',
         data: {
             products: sale_items,
+            warehouse_id: '{!! old('warehouse_id', $data->warehouse_id ?? $warehouses->first()->id) !!}',
         },
         computed: {
             totalQTy: function () {
