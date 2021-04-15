@@ -36,7 +36,7 @@
                 <label for="from_warehouse_id" class="control-label col-sm-12 required">Warehouse (From):</label>
                 <div class="col-sm-12">
                     @php($from_warehouse_id = old('from_warehouse_id', $data->from_warehouse_id))
-                    <select class="form-control" name="from_warehouse_id" id="from_warehouse_id" required>
+                    <select class="form-control" name="from_warehouse_id" id="from_warehouse_id" v-model="from_warehouse_id" required>
                         @foreach ($warehouses as $warehouse)
                             <option value="{{$warehouse->id}}" {{($from_warehouse_id==$warehouse->id)?'selected':''}}>{{$warehouse->name}}</option>
                         @endforeach
@@ -68,7 +68,7 @@
 
 <div class="row">
     <div class="col-sm-12 px-3">
-        <input type="text" class="form-control p-4" name="add_item" id="add_item" placeholder="Please add products to order list">
+        <input type="text" class="form-control p-4" name="add_item" id="add_item" :data-warehouse="from_warehouse_id" data-inStock="1" placeholder="Please add products to order list">
     </div>
 </div>
 

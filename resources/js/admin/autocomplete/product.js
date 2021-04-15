@@ -1,11 +1,17 @@
 window.productSuggestions = function (callback) {
     return {
         source: function (request, response) {
+            const {uiAutocomplete, ...data} = $(this.element.get(0)).data();
+            const params = {};
+            Object.keys(data).forEach(key => {
+                params[key] = $(this.element.get(0)).attr('data-' + key);
+            })
             $.ajax({
                 type: 'get',
                 url: window.base_url + '/api/products/suggestions',
                 dataType: "json",
                 data: {
+                    ...params,
                     q: request.term
                 },
                 success: function (data) {

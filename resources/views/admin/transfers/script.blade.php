@@ -4,6 +4,7 @@
         el: '#transfer_item',
         data: {
             products: transfer_items,
+            from_warehouse_id: '{!! old('from_warehouse_id', $data->from_warehouse_id ?? $warehouses->first()->id) !!}',
         },
         computed: {
             totalQTy: function () {
